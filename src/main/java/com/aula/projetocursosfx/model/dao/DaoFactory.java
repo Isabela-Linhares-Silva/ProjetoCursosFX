@@ -16,10 +16,6 @@ public interface DaoFactory {
         return new MatriculaDaoJDBC(DB.getConnection());
     }
 
-    public static PagamentoDaoJDBC cPedidoDAO() {
-        return new PagamentoDaoJDBC(DB.getConnection());
-    }
-
     public static ProfessorDaoJDBC cRevendedorDAO() {
         return new ProfessorDaoJDBC(DB.getConnection());
     }
