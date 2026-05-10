@@ -1,11 +1,14 @@
 package com.aula.projetocursosfx.model.impl;
 
+import com.aula.projetocursosfx.db.DB;
 import com.aula.projetocursosfx.model.dao.AlunoDao;
 import com.aula.projetocursosfx.model.entities.Aluno;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AlunoDaoJDBC implements AlunoDao {
@@ -24,25 +27,82 @@ public class AlunoDaoJDBC implements AlunoDao {
             st.setString(2, obj.getNome());
             st.setString(3, obj.getEmail());
             st.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
     @Override
     public void update(Aluno obj) {
+        try {
+            PreparedStatement st = connection.prepareStatement(
+                    "UPDATE aluno SET nome=?, email=? WHERE id=?"
+            );
+
+            st.setString(1, obj.getNome());
+            st.setString(2, obj.getEmail());
+
+            st.executeUpdate();
+            DB.closeStatement(st);
+        }
+        catch (SQLException e){
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public void deleteByID(Integer id) {
+        try {
+            PreparedStatement st = connection.prepareStatement(
+                    "DELETE from aluno WHERE id=?"
+            );
+
+            st.setInt(1, id);
+            st.executeUpdate();
+            DB.closeStatement(st);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public Aluno findByID(Integer id) {
+        PreparedStatement st = null;
+        ResultSet rs = null;
+
+        try {
+            st = connection.prepareStatement("SELECT * FROM aluno WHERE id=?");
+            st.setInt(1, id);
+            rs = st.executeQuery();
+            if(rs.next()) {
+                Aluno a = new Aluno(rs.getInt("id"), rs.getString("nome"), rs.getString("email"));
+            }
+        }
+        catch(SQLException e){
+            throw new RuntimeException(e);
+        }
         return null;
     }
 
     @Override
     public List<Aluno> findAll() {
-        return null;
+        try {
+            PreparedStatement st = connection.prepareStatement(
+                    "SELECT  * FROM aluno"
+            );
+
+            ResultSet rs = st.executeQuery();
+            List<Aluno> lista = new ArrayList<>();
+
+            while (rs.next()){
+                lista.add(new Aluno(rs.getInt("id"), rs.getString("nome"), rs.getString("email")));
+            }
+
+            DB.closeResultSet(rs);
+            DB.closeStatement(st);
+            return lista;
+        }
+        catch (SQLException e){
+            throw new RuntimeException(e);
+        }
     }
 }
