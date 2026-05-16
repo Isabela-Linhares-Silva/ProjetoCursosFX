@@ -33,8 +33,9 @@ public class AlunoDaoJDBC implements AlunoDao {
     }
     @Override
     public void update(Aluno obj) {
+        PreparedStatement st = null;
         try {
-            PreparedStatement st = connection.prepareStatement(
+            st = connection.prepareStatement(
                     "UPDATE aluno SET nome=?, email=? WHERE id=?"
             );
 
@@ -42,25 +43,32 @@ public class AlunoDaoJDBC implements AlunoDao {
             st.setString(2, obj.getEmail());
 
             st.executeUpdate();
-            DB.closeStatement(st);
+
         }
         catch (SQLException e){
             throw new RuntimeException(e);
+        }
+        finally {
+            DB.closeStatement(st);
         }
     }
 
     @Override
     public void deleteByID(Integer id) {
+        PreparedStatement st = null;
         try {
-            PreparedStatement st = connection.prepareStatement(
+            st = connection.prepareStatement(
                     "DELETE from aluno WHERE id=?"
             );
 
             st.setInt(1, id);
             st.executeUpdate();
-            DB.closeStatement(st);
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+        finally {
+            DB.closeStatement(st);
         }
     }
 
@@ -80,29 +88,36 @@ public class AlunoDaoJDBC implements AlunoDao {
         catch(SQLException e){
             throw new RuntimeException(e);
         }
+        finally {
+            DB.closeResultSet(rs);
+            DB.closeStatement(st);
+        }
         return null;
     }
 
     @Override
     public List<Aluno> findAll() {
+        PreparedStatement st = null;
+        ResultSet rs = null;
         try {
-            PreparedStatement st = connection.prepareStatement(
+            st = connection.prepareStatement(
                     "SELECT  * FROM aluno"
             );
 
-            ResultSet rs = st.executeQuery();
+            rs = st.executeQuery();
             List<Aluno> lista = new ArrayList<>();
 
             while (rs.next()){
                 lista.add(new Aluno(rs.getInt("id"), rs.getString("nome"), rs.getString("email")));
             }
-
-            DB.closeResultSet(rs);
-            DB.closeStatement(st);
             return lista;
         }
         catch (SQLException e){
             throw new RuntimeException(e);
+        }
+        finally {
+            DB.closeResultSet(rs);
+            DB.closeStatement(st);
         }
     }
 }

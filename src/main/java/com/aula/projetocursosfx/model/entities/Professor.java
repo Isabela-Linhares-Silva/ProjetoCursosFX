@@ -5,13 +5,20 @@ public class Professor {
     private String nome;
     private String especialidade;
 
-    Professor(Integer id, String nome, String especialidade){
+    public Professor(Integer id, String nome, String especialidade){
         this.id = id;
         this.nome = nome;
         this.especialidade = especialidade;
     }
+    public Professor( String nome, String especialidade){
+        this.nome = nome;
+        this.especialidade = especialidade;
+    }
+    public Professor(Integer id){
+        this.id = id;
+    }
 
-    Professor(){ }
+    public Professor(){ }
 
 
 

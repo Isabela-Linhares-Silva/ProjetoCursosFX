@@ -15,7 +15,7 @@ public class Matricula {
     private Date dataPagamento;
     private String statusPagamento;
 
-    Matricula(Integer id, Date data, String status, Aluno aluno, Curso curso, Double valor, Date dataPagamento,String statusPagamento){
+    public Matricula(Integer id, Date data, String status, Aluno aluno, Curso curso, Double valor, Date dataPagamento,String statusPagamento){
         this.id = id;
         this.data = data;
         this.status = status;
@@ -26,7 +26,7 @@ public class Matricula {
         this.statusPagamento = statusPagamento;
     }
 
-    Matricula() { }
+    public Matricula() { }
 
     public Integer getId() {
         return id;

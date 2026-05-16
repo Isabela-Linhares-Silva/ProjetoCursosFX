@@ -10,11 +10,21 @@ public class Curso {
     private Professor professor;
 
     public Curso(Integer id, String nome, Integer cargaHoraria, Double preco, Professor professor) {
-        this.id = id;
+        this.id = id;//é auto incremento
         this.nome = nome;
         this.cargaHoraria= cargaHoraria;
         this.preco = preco;
         this.professor = professor;
+    }
+    public Curso( String nome, Integer cargaHoraria, Double preco, Professor professor) {
+        this.nome = nome;
+        this.cargaHoraria= cargaHoraria;
+        this.preco = preco;
+        this.professor = professor;
+    }
+    public Curso(Integer id, String nome) { //para procura de turma
+        this.id = id;
+        this.nome = nome;
     }
 
     public Curso() {

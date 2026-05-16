@@ -1,9 +1,9 @@
-package com.aula.projetocursosfx;
+package com.aula.projetocursosfx.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class HelloController {
+public class ApplicationController {
     @FXML
     private Label welcomeText;
 

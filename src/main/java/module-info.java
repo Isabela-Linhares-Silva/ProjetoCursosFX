@@ -7,4 +7,6 @@ module com.aula.projetocursosfx {
 
     opens com.aula.projetocursosfx to javafx.fxml;
     exports com.aula.projetocursosfx;
+    exports com.aula.projetocursosfx.controller;
+    opens com.aula.projetocursosfx.controller to javafx.fxml;
 }

@@ -5,7 +5,7 @@ public class Aluno {
     private String nome;
     private String email;
 
-    Aluno(){ }
+    public Aluno(){ }
 
     public Aluno(Integer id, String nome, String email){
         this.id = id;
