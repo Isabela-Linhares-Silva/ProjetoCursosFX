@@ -80,6 +80,9 @@ public class Matricula {
                 ", curso: "+ (curso != null ? curso.getNome() : "null") +
                 ", data: "+ data+
                 ", status: "+ status+
+                ", valor: "+ valor+
+                ", data do pagamento: " + dataPagamento+
+                ", status do pagamento: " + statusPagamento+
                 "}";
     }
 }
