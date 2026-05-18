@@ -9,7 +9,6 @@ public class Matricula {
     private Aluno aluno;
     private Curso curso;
 
-
     // oq veio da antiga classe Pagamento
     private Double valor;
     private Date dataPagamento;

@@ -7,11 +7,14 @@ public class Aluno {
 
     public Aluno(){ }
 
+    public Aluno(Integer id){ this.id = id;}
+
     public Aluno(Integer id, String nome, String email){
         this.id = id;
         this.nome = nome;
         this.email = email;
     }
+
 
     public Integer getId() {
         return id;

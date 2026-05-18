@@ -26,7 +26,9 @@ public class Curso {
         this.id = id;
         this.nome = nome;
     }
-
+    public Curso(Integer id) {
+        this.id = id;
+    }
     public Curso() {
     }
 
