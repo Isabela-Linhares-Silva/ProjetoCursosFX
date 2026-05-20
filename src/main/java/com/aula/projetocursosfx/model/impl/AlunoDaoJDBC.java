@@ -41,6 +41,7 @@ public class AlunoDaoJDBC implements AlunoDao {
 
             st.setString(1, obj.getNome());
             st.setString(2, obj.getEmail());
+            st.setInt(3, obj.getId());
 
             st.executeUpdate();
 
@@ -82,7 +83,7 @@ public class AlunoDaoJDBC implements AlunoDao {
             st.setInt(1, id);
             rs = st.executeQuery();
             if(rs.next()) {
-                Aluno a = new Aluno(rs.getInt("id"), rs.getString("nome"), rs.getString("email"));
+                return new Aluno(rs.getInt("id"), rs.getString("nome"), rs.getString("email"));
             }
         }
         catch(SQLException e){
