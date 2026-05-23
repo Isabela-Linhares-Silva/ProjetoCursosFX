@@ -1,7 +1,7 @@
 package com.aula.projetocursosfx.model.dao;
 
 import com.aula.projetocursosfx.db.DB;
-import com.aula.projetocursosfx.model.impl.*;
+import com.aula.projetocursosfx.model.dao.impl.*;
 
 public interface DaoFactory {
     public static AlunoDaoJDBC cPerfumeDAO() {

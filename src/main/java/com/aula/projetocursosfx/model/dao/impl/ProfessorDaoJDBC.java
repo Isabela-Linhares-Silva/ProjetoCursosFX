@@ -1,61 +1,55 @@
-package com.aula.projetocursosfx.model.impl;
+package com.aula.projetocursosfx.model.dao.impl;
 
 import com.aula.projetocursosfx.db.DB;
-import com.aula.projetocursosfx.model.entities.Aluno;
-import com.aula.projetocursosfx.model.entities.Curso;
 import com.aula.projetocursosfx.model.entities.Professor;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CursoDaoJDBC {
+public class ProfessorDaoJDBC {
     private Connection connection;
 
-    public CursoDaoJDBC(Connection connection) {
+    public ProfessorDaoJDBC(Connection connection) {
         this.connection = connection;
     }
 
-    public void insert(Curso obj){
+    public void insert(Professor obj){
         PreparedStatement st = null;
         ResultSet rs = null;
-        try{
-            st = connection.prepareStatement("insert into curso(nome,cargaHoraria,preco,professor) values (?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+        try {
+            st = connection.prepareStatement("insert into professor(nome,especialidade) values(?,?)", Statement.RETURN_GENERATED_KEYS);
             st.setString(1, obj.getNome());
-            st.setInt(2,obj.getCargaHoraria());
-            st.setDouble(3,obj.getPreco());
-            st.setInt(4,obj.getProfessor().getId());
-
+            st.setString(2, obj.getEspecialidade());
             int linhas = st.executeUpdate();
-            if (linhas!=0){
-                rs= st.getGeneratedKeys();
+
+            if (linhas != 0){
+                rs = st.getGeneratedKeys();
 
                 if (rs.next()){
                     obj.setId(rs.getInt(1));
                 }
             }
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        finally {
+        finally{
             DB.closeResultSet(rs);
             DB.closeStatement(st);
         }
 
     }
 
-    public void update(Curso obj){
+    public void update(Professor obj){
         PreparedStatement st = null;
         try {
             st = connection.prepareStatement(
-                    "update aluno set nome=?, cargaHoraria=?, preco=?, professor=? where id=?"
+                    "update aluno set nome=?, especialidade=? where id=?"
             );
 
             st.setString(1, obj.getNome());
-            st.setInt(2, obj.getCargaHoraria());
-            st.setDouble(3,obj.getPreco());
-            st.setInt(4,obj.getProfessor().getId());
-
+            st.setString(2, obj.getEspecialidade());
             st.executeUpdate();
 
         }
@@ -70,28 +64,26 @@ public class CursoDaoJDBC {
     public void deleteByID(Integer id){
         PreparedStatement st = null;
         try {
-            st = connection.prepareStatement("delete from curso where id = ?");
+            st = connection.prepareStatement("delete from professor where id = ?");
             st.setInt(1,id);
             st.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        finally{
+       finally {
             DB.closeStatement(st);
         }
-
     }
 
-    public Curso findByID(Integer id){
+    public Professor findByID(Integer id){
         PreparedStatement st = null;
         ResultSet rs = null;
-
-        try{
-            st = connection.prepareStatement("select * from curso where id =?");
+        try {
+            st = connection.prepareStatement("select * from professor where id =?");
             st.setInt(1,id);
-            rs= st.executeQuery();
+            rs = st.executeQuery();
             if (rs.next()){
-                return new Curso(rs.getInt("id"),rs.getString("nome"));
+                return new Professor(rs.getInt(1),rs.getString(2),rs.getString(3));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -103,21 +95,20 @@ public class CursoDaoJDBC {
         return null;
     }
 
-    public List<Curso> findAll(){
+    public List<Professor> findAll(){
         PreparedStatement st = null;
         ResultSet rs = null;
-        try {
-            st = connection.prepareStatement("select * from curso");
 
+        try{
+            st = connection.prepareStatement("select * from professor");
             rs = st.executeQuery();
-            List<Curso> lista = new ArrayList<>();
+            List<Professor> lista = new ArrayList<>();
 
             while (rs.next()){
-                lista.add(new Curso(rs.getInt("id"), rs.getString("nome"), rs.getInt("cargaHoraria"),rs.getDouble("preco"),new Professor(rs.getInt("professor"))));
+                lista.add(new Professor(rs.getInt("id"),rs.getString("nome"),rs.getString("especialidade")));
             }
             return lista;
-        }
-        catch (SQLException e){
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         finally {

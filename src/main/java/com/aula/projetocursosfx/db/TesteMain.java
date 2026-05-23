@@ -1,8 +1,7 @@
 package com.aula.projetocursosfx.db;
 
 import com.aula.projetocursosfx.model.dao.AlunoDao;
-import com.aula.projetocursosfx.model.entities.Aluno;
-import com.aula.projetocursosfx.model.impl.AlunoDaoJDBC;
+import com.aula.projetocursosfx.model.dao.impl.AlunoDaoJDBC;
 
 import java.util.Scanner;
 

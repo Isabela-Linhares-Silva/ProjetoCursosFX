@@ -1,4 +1,4 @@
-package com.aula.projetocursosfx.model.impl;
+package com.aula.projetocursosfx.model.dao.impl;
 
 import com.aula.projetocursosfx.db.DB;
 import com.aula.projetocursosfx.model.dao.AlunoDao;
