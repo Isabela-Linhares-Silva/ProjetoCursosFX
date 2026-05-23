@@ -1,10 +1,9 @@
-package com.aula.projetocursosfx.model.impl;
+package com.aula.projetocursosfx.model.dao.impl;
 
 import com.aula.projetocursosfx.db.DB;
 import com.aula.projetocursosfx.model.entities.Aluno;
 import com.aula.projetocursosfx.model.entities.Curso;
 import com.aula.projetocursosfx.model.entities.Matricula;
-import com.aula.projetocursosfx.model.entities.Professor;
 
 import java.sql.*;
 import java.util.ArrayList;
