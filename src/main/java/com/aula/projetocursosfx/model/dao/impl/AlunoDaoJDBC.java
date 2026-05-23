@@ -19,16 +19,18 @@ public class AlunoDaoJDBC implements AlunoDao {
     }
 
     public void insert(Aluno obj){
+        PreparedStatement st = null;
         try {
-            PreparedStatement st = connection.prepareStatement(
-                    "INSERT INTO aluno (id, nome, email) VALUES (?, ?, ?)"
+            st = connection.prepareStatement(
+                    "INSERT INTO aluno (nome, email) VALUES (?, ?)"
             );
-            st.setInt(1, obj.getId());
-            st.setString(2, obj.getNome());
-            st.setString(3, obj.getEmail());
+            st.setString(1, obj.getNome());
+            st.setString(2, obj.getEmail());
             st.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            DB.closeStatement(st);
         }
     }
     @Override
@@ -83,7 +85,11 @@ public class AlunoDaoJDBC implements AlunoDao {
             st.setInt(1, id);
             rs = st.executeQuery();
             if(rs.next()) {
-                return new Aluno(rs.getInt("id"), rs.getString("nome"), rs.getString("email"));
+                return new Aluno(
+                        rs.getInt("id"),
+                        rs.getString("nome"),
+                        rs.getString("email")
+                );
             }
         }
         catch(SQLException e){
@@ -109,7 +115,11 @@ public class AlunoDaoJDBC implements AlunoDao {
             List<Aluno> lista = new ArrayList<>();
 
             while (rs.next()){
-                lista.add(new Aluno(rs.getInt("id"), rs.getString("nome"), rs.getString("email")));
+                lista.add(new Aluno(
+                        rs.getInt("id"),
+                        rs.getString("nome"),
+                        rs.getString("email")
+                ));
             }
             return lista;
         }

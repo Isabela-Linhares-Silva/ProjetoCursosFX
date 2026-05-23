@@ -2,19 +2,19 @@ CREATE DATABASE projeto;
 USE projeto;
 
 CREATE TABLE aluno (
-        id INT PRIMARY KEY,
+        id INT AUTO_INCREMENT PRIMARY KEY,
         nome VARCHAR(100),
         email VARCHAR(100)
 );
 
 CREATE TABLE professor (
-       id INT PRIMARY KEY,
+       id INT AUTO_INCREMENT PRIMARY KEY,
        nome VARCHAR(100),
        especialidade VARCHAR(100)
 );
 
 CREATE TABLE curso (
-       id INT PRIMARY KEY,
+       id INT AUTO_INCREMENT PRIMARY KEY,
        nome VARCHAR(100),
        cargaHoraria INT,
        preco DOUBLE,
@@ -23,7 +23,7 @@ CREATE TABLE curso (
 );
 
 CREATE TABLE matricula (
-       id INT PRIMARY KEY,
+       id INT AUTO_INCREMENT PRIMARY KEY,
        aluno_id INT,
        curso_id INT,
        FOREIGN KEY (aluno_id) REFERENCES aluno(id),

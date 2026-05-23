@@ -12,12 +12,12 @@ public class Matricula {
 
     // oq veio da antiga classe Pagamento
     private Double valor;
-    private Date dataPagamento;
+    private LocalDate dataPagamento;
     private String statusPagamento;
 
-    public Matricula(Integer id, Date data, String status, Aluno aluno, Curso curso, Double valor, Date dataPagamento,String statusPagamento){
+    public Matricula(Integer id, LocalDate data, String status, Aluno aluno, Curso curso, Double valor, LocalDate dataPagamento,String statusPagamento){
         this.id = id;
-        this.data = data.toLocalDate();
+        this.data = data;
         this.status = status;
         this.aluno = aluno;
         this.curso = curso;
@@ -35,11 +35,11 @@ public class Matricula {
         this.id = id;
     }
 
-    public Date getData() {
+    public LocalDate getData() {
         return data;
     }
-    public void setData(Date data) {
-        this.data = data.toLocalDate();
+    public void setData(LocalDate data) {
+        this.data = data;
     }
 
     public String getStatus() {
@@ -66,8 +66,10 @@ public class Matricula {
     public Double getValor() {return valor;}
     public void setValor(Double valor) {this.valor = valor;}
 
-    public Date getDataPagamento() {return dataPagamento;}
-    public void setDataPagamento(Date dataPagamento) {this.dataPagamento = dataPagamento;}
+    public LocalDate getDataPagamento() {return dataPagamento;}
+    public void setDataPagamento(LocalDate dataPagamento) {
+        this.dataPagamento = dataPagamento;
+    }
 
     public String getStatusPagamento() {return statusPagamento;}
     public void setStatusPagamento(String statusPagamento) {this.statusPagamento = statusPagamento;}

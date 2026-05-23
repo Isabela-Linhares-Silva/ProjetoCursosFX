@@ -21,12 +21,12 @@ public class MatriculaDaoJDBC {
         ResultSet rs = null;
         try {
             st = connection.prepareStatement("insert into matricula(data, status, aluno, curso, valor,dataPagamento, statusPagamento) values(?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
-            st.setDate(1,obj.getData());
+            st.setDate(1, java.sql.Date.valueOf(obj.getData()));
             st.setString(2,obj.getStatus());
             st.setInt(3,obj.getAluno().getId());
             st.setInt(4,obj.getCurso().getId());
             st.setDouble(5,obj.getValor());
-            st.setDate(6,obj.getDataPagamento());
+            st.setDate(6, Date.valueOf(obj.getDataPagamento()));
             st.setString(7, obj.getStatusPagamento());
             int linhas = st.executeUpdate();
 
@@ -50,12 +50,14 @@ public class MatriculaDaoJDBC {
     public void update(Matricula obj){
         PreparedStatement st = null;
         try {
-            st =connection.prepareStatement("update matricula set data=?, status =?, aluno=?, curso=? where id = ?");
-            st.setDate(1,obj.getData());
-            st.setString(2,obj.toString());
-            st.setInt(3,obj.getAluno().getId());
-            st.setInt(4,obj.getCurso().getId());
-            st.executeUpdate();
+            st = connection.prepareStatement(
+                    "UPDATE matricula SET data=?, status=?, aluno=?, curso=? WHERE id=?"
+            );
+            st.setDate(1, Date.valueOf(obj.getData()));
+            st.setString(2, obj.getStatus());
+            st.setInt(3, obj.getAluno().getId());
+            st.setInt(4, obj.getCurso().getId());
+            st.setInt(5, obj.getId());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }finally {
@@ -87,7 +89,16 @@ public class MatriculaDaoJDBC {
             rs = st.executeQuery();
 
             if (rs.next()){
-                return new Matricula(rs.getInt("id"),rs.getDate("data"),rs.getString("status"),new Aluno(rs.getInt("aluno")),new Curso(rs.getInt("curso")),rs.getDouble("valor"),rs.getDate("dataPagamento"),rs.getString("statusPagamento"));
+                return new Matricula(
+                        rs.getInt("id"),
+                        rs.getDate("data").toLocalDate(),
+                        rs.getString("status"),
+                        new Aluno(rs.getInt("aluno")),
+                        new Curso(rs.getInt("curso")),
+                        rs.getDouble("valor"),
+                        rs.getDate("dataPagamento").toLocalDate(),
+                        rs.getString("statusPagamento")
+                );
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -109,7 +120,7 @@ public class MatriculaDaoJDBC {
             List<Matricula> lista = new ArrayList<>();
 
             while (rs.next()){
-                lista.add(new Matricula(rs.getInt("id"),rs.getDate("data"),rs.getString("status"),new Aluno(rs.getInt("aluno")),new Curso(rs.getInt("curso")),rs.getDouble("valor"),rs.getDate("dataPagamento"),rs.getString("statusPagamento")));
+                lista.add(new Matricula(rs.getInt("id"),rs.getDate("data").toLocalDate(),rs.getString("status"),new Aluno(rs.getInt("aluno")),new Curso(rs.getInt("curso")),rs.getDouble("valor"),rs.getDate("dataPagamento").toLocalDate(),rs.getString("statusPagamento")));
             }
             return lista;
         } catch (SQLException e) {

@@ -2,7 +2,6 @@ package com.aula.projetocursosfx.model.entities;
 
 public class Curso {
 
-
     private Integer id;
     private String nome;
     private Integer cargaHoraria;
