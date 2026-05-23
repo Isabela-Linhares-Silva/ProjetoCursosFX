@@ -1,13 +1,14 @@
 package com.aula.projetocursosfx.model.dao.impl;
 
 import com.aula.projetocursosfx.db.DB;
+import com.aula.projetocursosfx.model.dao.ProfessorDao;
 import com.aula.projetocursosfx.model.entities.Professor;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProfessorDaoJDBC {
+public class ProfessorDaoJDBC implements ProfessorDao {
     private Connection connection;
 
     public ProfessorDaoJDBC(Connection connection) {

@@ -1,6 +1,7 @@
 package com.aula.projetocursosfx.model.dao.impl;
 
 import com.aula.projetocursosfx.db.DB;
+import com.aula.projetocursosfx.model.dao.MatriculaDao;
 import com.aula.projetocursosfx.model.entities.Aluno;
 import com.aula.projetocursosfx.model.entities.Curso;
 import com.aula.projetocursosfx.model.entities.Matricula;
@@ -9,7 +10,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MatriculaDaoJDBC {
+public class MatriculaDaoJDBC implements MatriculaDao {
     private Connection connection;
 
     public MatriculaDaoJDBC(Connection connection) {

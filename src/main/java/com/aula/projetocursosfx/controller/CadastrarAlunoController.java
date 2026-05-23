@@ -1,4 +1,4 @@
 package com.aula.projetocursosfx.controller;
 
-public class BuscarTurmaController {
+public class CadastrarAlunoController {
 }
