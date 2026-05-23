@@ -1,13 +1,14 @@
 package com.aula.projetocursosfx.model.dao.impl;
 
 import com.aula.projetocursosfx.db.DB;
+import com.aula.projetocursosfx.model.dao.ProfessorDao;
 import com.aula.projetocursosfx.model.entities.Professor;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProfessorDaoJDBC {
+public class ProfessorDaoJDBC implements ProfessorDao {
     private Connection connection;
 
     public ProfessorDaoJDBC(Connection connection) {
@@ -45,11 +46,12 @@ public class ProfessorDaoJDBC {
         PreparedStatement st = null;
         try {
             st = connection.prepareStatement(
-                    "update aluno set nome=?, especialidade=? where id=?"
+                    "update professor set nome=?, especialidade=? where id=?"
             );
 
             st.setString(1, obj.getNome());
             st.setString(2, obj.getEspecialidade());
+            st.setInt(3, obj.getId());
             st.executeUpdate();
 
         }

@@ -20,7 +20,7 @@ public class CursoDaoJDBC implements CursoDao {
         PreparedStatement st = null;
         ResultSet rs = null;
         try{
-            st = connection.prepareStatement("insert into curso(nome,cargaHoraria,preco,professor) values (?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+            st = connection.prepareStatement("insert into curso(nome,carga_horaria,preco,professor_id) values (?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
             st.setString(1, obj.getNome());
             st.setInt(2,obj.getCargaHoraria());
             st.setDouble(3,obj.getPreco());
@@ -48,13 +48,14 @@ public class CursoDaoJDBC implements CursoDao {
         PreparedStatement st = null;
         try {
             st = connection.prepareStatement(
-                    "update aluno set nome=?, cargaHoraria=?, preco=?, professor=? where id=?"
+                    "update curso set nome=?, carga_horaria=?, preco=?, professor_id=? where id=?"
             );
 
             st.setString(1, obj.getNome());
             st.setInt(2, obj.getCargaHoraria());
             st.setDouble(3,obj.getPreco());
             st.setInt(4,obj.getProfessor().getId());
+            st.setInt(5, obj.getId());
 
             st.executeUpdate();
 
@@ -85,18 +86,24 @@ public class CursoDaoJDBC implements CursoDao {
     public Curso findByID(Integer id){
         PreparedStatement st = null;
         ResultSet rs = null;
-
         try{
             st = connection.prepareStatement("select * from curso where id =?");
             st.setInt(1,id);
             rs= st.executeQuery();
+
             if (rs.next()){
-                return new Curso(rs.getInt("id"),rs.getString("nome"));
+                return new Curso(
+                        rs.getInt("id"),
+                        rs.getString("nome"),
+                        rs.getInt("carga_horaria"),
+                        rs.getDouble("preco"),
+                        new Professor(rs.getInt("professor_id"))
+                );
             }
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }
-        finally {
+        } finally {
             DB.closeResultSet(rs);
             DB.closeStatement(st);
         }
@@ -113,7 +120,7 @@ public class CursoDaoJDBC implements CursoDao {
             List<Curso> lista = new ArrayList<>();
 
             while (rs.next()){
-                lista.add(new Curso(rs.getInt("id"), rs.getString("nome"), rs.getInt("cargaHoraria"),rs.getDouble("preco"),new Professor(rs.getInt("professor"))));
+                lista.add(new Curso(rs.getInt("id"), rs.getString("nome"),rs.getInt("carga_horaria"),rs.getDouble("preco"),new Professor(rs.getInt("professor_id"))));
             }
             return lista;
         }

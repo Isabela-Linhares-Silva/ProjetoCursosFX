@@ -2,8 +2,10 @@ package com.aula.projetocursosfx.db;
 
 import com.aula.projetocursosfx.model.dao.AlunoDao;
 import com.aula.projetocursosfx.model.dao.CursoDao;
+import com.aula.projetocursosfx.model.dao.ProfessorDao;
 import com.aula.projetocursosfx.model.dao.impl.AlunoDaoJDBC;
 import com.aula.projetocursosfx.model.dao.impl.CursoDaoJDBC;
+import com.aula.projetocursosfx.model.dao.impl.ProfessorDaoJDBC;
 import com.aula.projetocursosfx.model.entities.Aluno;
 import com.aula.projetocursosfx.model.entities.Curso;
 import com.aula.projetocursosfx.model.entities.Professor;
@@ -67,30 +69,126 @@ public class TesteMain {
         //ENCONTRAR TODOS!!
 //-------------------------------------------------------------------//
 
-        /*System.out.print("digite o id: ");
-        Integer id = sc.nextInt();
-        System.out.print("digite o nome: ");
+        /*System.out.print("nome do professor: ");
+        String nome = sc.nextLine();
+        System.out.print("especialidade do professor: ");
+        String especialidade = sc.nextLine();*/
+
+        ProfessorDao professor = new ProfessorDaoJDBC(DB.getConnection());
+
+        //professor.insert(new Professor(nome, especialidade));
+        //System.out.println("professor inserido com sucesso!");
+
+        //INSERIR PROFESSOR
+//-------------------------------------------------------------------//
+
+       /* System.out.print("id que quer atualizar: ");
+        int id = sc.nextInt();
+
+        Professor resultado = professor.findByID(id);
+        if (resultado == null){
+            System.out.println("aluno nao econtrado.");
+        }
+        else{
+            sc.nextLine();
+            System.out.print("novo nome: ");
+            resultado.setNome(sc.nextLine());
+            System.out.print("novo especialidade: ");
+            resultado.setEspecialidade(sc.next());
+
+            professor.update(resultado);
+            System.out.println("professor atualizado!");
+        }*/
+        //ATUALIZAR PROFESSOR!!
+//-------------------------------------------------------------------//
+
+        /*System.out.print("id do professor que será deletado: ");
+        int id = sc.nextInt();
+        professor.deleteByID(id);
+        System.out.println("professor deletado");*/
+        //DELETAR PROFESSOR!!
+//-------------------------------------------------------------------//
+        /*System.out.print("digite o id do professor que quer procurar: ");
+        int id = sc.nextInt();
+        Professor resultado = professor.findByID(id);
+        if (resultado == null){
+            System.out.println("professor nao econtrado.");
+        }else{
+            System.out.println(resultado);
+        }*/
+        //ENCONTRAR PROFESSOR!!
+//-------------------------------------------------------------------//
+        //professor.findAll().forEach(System.out::println);
+        //ENCONTRAR TODOS!!
+
+//-------------------------------------------------------------------//
+
+        /*System.out.print("digite o nome do curso: ");
         String nome = sc.nextLine();
         System.out.print("digite a carga horaria: ");
-        Integer cargaHoraria = sc.nextInt();
+        Integer carga_horaria = sc.nextInt();
         System.out.print("digite o preco: ");
         Double preco = sc.nextDouble();
         System.out.print("digite o professor (id): ");
         Integer professorId = sc.nextInt();
-        Professor professor = new Professor(professorId);
+        Professor professorCurso = new Professor(professorId);*/
 
         // cria o curso com o professor
 
         //aluno.insert(new Aluno(id, nome, email));
         CursoDao curso = new CursoDaoJDBC(DB.getConnection());
 
-        curso.insert(new Curso(id, nome, cargaHoraria, preco, professor));
+        //curso.insert(new Curso(nome, carga_horaria, preco, professorCurso));
 
-        System.out.println("Curso inserido com sucesso!");*/
+        //System.out.println("Curso inserido com sucesso!");
+        //INSERIR CURSO
+//-------------------------------------------------------------------//
 
+        /*System.out.print("id que quer atualizar: ");
+        int id = sc.nextInt();
 
+        Curso resultado = curso.findByID(id);
+        if (resultado == null){
+            System.out.println("curso nao econtrado.");
+        }
+        else{
+            sc.nextLine();
+            System.out.print("novo nome: ");
+            resultado.setNome(sc.nextLine());
+            System.out.print("nova cargahoraria: ");
+            resultado.setCargaHoraria(sc.nextInt());
+            System.out.print("novo preco: ");
+            resultado.setPreco(sc.nextDouble());
+            System.out.print("novo id do professor: ");
+            int professorId = sc.nextInt();
 
+            Professor novoProfessor = new Professor(professorId);
+            resultado.setProfessor(novoProfessor);
 
+            curso.update(resultado);
+            //ATUALIZAR CURSO
+        }*/
+//-------------------------------------------------------------------//
 
+       /* System.out.print("id do curso que será deletado: ");
+        int id = sc.nextInt();
+        curso.deleteByID(id);
+        System.out.println("curso deletado");*/
+        //DELETAR PROFESSOR!!
+//-------------------------------------------------------------------//
+
+        /*System.out.print("digite o id do curso que quer procurar: ");
+        int id = sc.nextInt();
+        Curso resultado = curso.findByID(id);
+        if (resultado == null){
+            System.out.println("curso nao econtrado.");
+        }else{
+            System.out.println(resultado);
+        }*/
+        //ENCONTRAR CURSO!!
+//-------------------------------------------------------------------//
+
+        //curso.findAll().forEach(System.out::println);
+        //ENCONTRAR TODOS!!
     }
 }

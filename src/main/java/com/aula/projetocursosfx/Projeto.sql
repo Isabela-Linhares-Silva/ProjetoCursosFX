@@ -16,7 +16,7 @@ CREATE TABLE professor (
 CREATE TABLE curso (
        id INT AUTO_INCREMENT PRIMARY KEY,
        nome VARCHAR(100),
-       cargaHoraria INT,
+       carga_horaria INT,
        preco DOUBLE,
        professor_id INT,
        FOREIGN KEY (professor_id) REFERENCES professor(id)
