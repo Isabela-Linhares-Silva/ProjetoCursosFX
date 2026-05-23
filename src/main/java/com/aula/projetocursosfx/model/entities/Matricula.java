@@ -1,10 +1,11 @@
 package com.aula.projetocursosfx.model.entities;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class Matricula {
     private Integer id;
-    private Date data;
+    private LocalDate data;
     private String status;
     private Aluno aluno;
     private Curso curso;
@@ -16,7 +17,7 @@ public class Matricula {
 
     public Matricula(Integer id, Date data, String status, Aluno aluno, Curso curso, Double valor, Date dataPagamento,String statusPagamento){
         this.id = id;
-        this.data = data;
+        this.data = data.toLocalDate();
         this.status = status;
         this.aluno = aluno;
         this.curso = curso;
@@ -38,7 +39,7 @@ public class Matricula {
         return data;
     }
     public void setData(Date data) {
-        this.data = data;
+        this.data = data.toLocalDate();
     }
 
     public String getStatus() {
