@@ -6,14 +6,13 @@ import javafx.scene.control.Label;
 
 public class ApplicationController {
     @FXML
-    protected void onBuscarTurmaClicked(){
+    protected void onBuscarCursoClicked(){
         Application.criarTela("controller/buscar-curso-view.fxml");
     }
     @FXML
-    protected void onCadastrarTurmaClicked(){
+    protected void onCadastrarCursoClicked(){
         Application.criarTela("controller/cadastrar-curso-view.fxml");
     }
-
     @FXML
     protected void onCadastrarAlunoClicked(){
         Application.criarTela("controller/cadastrar-aluno-view.fxml");

@@ -1,10 +1,12 @@
 package com.aula.projetocursosfx;
 
+import com.aula.projetocursosfx.db.DB;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Connection;
 
 public class Application extends javafx.application.Application {
     private static Scene scene;

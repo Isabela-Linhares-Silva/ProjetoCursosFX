@@ -15,6 +15,11 @@ public class Aluno {
         this.email = email;
     }
 
+    public Aluno(String nome,String email) {
+        this.nome = nome;
+        this.email = email;
+    }
+
 
     public Integer getId() {
         return id;

@@ -31,6 +31,10 @@ public class Curso {
     public Curso() {
     }
 
+    public Curso(String nome) {
+        this.nome = nome;
+    }
+
     public Integer getId() {
         return id;
     }

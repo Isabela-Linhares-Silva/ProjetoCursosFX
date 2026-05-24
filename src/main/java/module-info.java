@@ -4,6 +4,7 @@ module com.aula.projetocursosfx {
     requires java.sql;
 
     requires org.controlsfx.controls;
+    requires java.desktop;
 
     opens com.aula.projetocursosfx to javafx.fxml;
     exports com.aula.projetocursosfx;

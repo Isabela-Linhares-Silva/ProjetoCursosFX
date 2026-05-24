@@ -32,5 +32,5 @@ CREATE TABLE matricula (
        status VARCHAR(50),
        valor DOUBLE,
        data_pagamento DATE,
-       status_pagamento VARCHAR(50),
+       status_pagamento VARCHAR(50)
 );
