@@ -1,14 +1,21 @@
 package com.aula.projetocursosfx.controller;
 
+import com.aula.projetocursosfx.Application;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
 public class ApplicationController {
     @FXML
-    private Label welcomeText;
+    protected void onBuscarTurmaClicked(){
+        Application.criarTela("controller/buscar-curso-view.fxml");
+    }
+    @FXML
+    protected void onCadastrarTurmaClicked(){
+        Application.criarTela("controller/cadastrar-curso-view.fxml");
+    }
 
     @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
+    protected void onCadastrarAlunoClicked(){
+        Application.criarTela("controller/cadastrar-aluno-view.fxml");
     }
 }

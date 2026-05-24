@@ -7,13 +7,33 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class Application extends javafx.application.Application {
+    private static Scene scene;
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("hello-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("controller/hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
+        stage.setTitle("Pagina Inicial!");
         stage.setScene(scene);
         stage.show();
+    }
+
+    public static Scene getScene(){//serve para quando for trabalhar com imagens
+        return scene;
+    }
+
+    public static Scene criarTela(String url) {
+        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource(url));
+        Stage stage = new Stage();
+        Scene scene;
+        try{
+            scene = new Scene(fxmlLoader.load());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        stage.setScene(scene);
+        stage.show();
+
+        return scene;
     }
 
     public static void main(String[] args) {

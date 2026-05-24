@@ -4,20 +4,12 @@ import com.aula.projetocursosfx.db.DB;
 import com.aula.projetocursosfx.model.dao.impl.*;
 
 public interface DaoFactory {
-    public static AlunoDaoJDBC cPerfumeDAO() {
-        return new AlunoDaoJDBC(DB.getConnection());
-    }
-
-    public static CursoDaoJDBC cClienteDAO() {
+    public static CursoDao createCursoDao(){
         return new CursoDaoJDBC(DB.getConnection());
     }
 
-    public static MatriculaDaoJDBC cMarcaDAO() {
-        return new MatriculaDaoJDBC(DB.getConnection());
-    }
-
-    public static ProfessorDaoJDBC cRevendedorDAO() {
-        return new ProfessorDaoJDBC(DB.getConnection());
+    public static AlunoDao createAlunoDao(){
+        return new AlunoDaoJDBC(DB.getConnection());
     }
 }
 
