@@ -2,14 +2,20 @@ package com.aula.projetocursosfx.db;
 
 import com.aula.projetocursosfx.model.dao.AlunoDao;
 import com.aula.projetocursosfx.model.dao.CursoDao;
+import com.aula.projetocursosfx.model.dao.MatriculaDao;
 import com.aula.projetocursosfx.model.dao.ProfessorDao;
 import com.aula.projetocursosfx.model.dao.impl.AlunoDaoJDBC;
 import com.aula.projetocursosfx.model.dao.impl.CursoDaoJDBC;
+import com.aula.projetocursosfx.model.dao.impl.MatriculaDaoJDBC;
 import com.aula.projetocursosfx.model.dao.impl.ProfessorDaoJDBC;
 import com.aula.projetocursosfx.model.entities.Aluno;
 import com.aula.projetocursosfx.model.entities.Curso;
+import com.aula.projetocursosfx.model.entities.Matricula;
 import com.aula.projetocursosfx.model.entities.Professor;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class TesteMain {
@@ -123,7 +129,7 @@ public class TesteMain {
 
 //-------------------------------------------------------------------//
 
-        /*System.out.print("digite o nome do curso: ");
+       /* System.out.print("digite o nome do curso: ");
         String nome = sc.nextLine();
         System.out.print("digite a carga horaria: ");
         Integer carga_horaria = sc.nextInt();
@@ -136,7 +142,7 @@ public class TesteMain {
         // cria o curso com o professor
 
         //aluno.insert(new Aluno(id, nome, email));
-        CursoDao curso = new CursoDaoJDBC(DB.getConnection());
+        //CursoDao curso = new CursoDaoJDBC(DB.getConnection());
 
         //curso.insert(new Curso(nome, carga_horaria, preco, professorCurso));
 
@@ -192,6 +198,35 @@ public class TesteMain {
         //ENCONTRAR TODOS CURSOS!!
 //-------------------------------------------------------------------//
 
+        /*DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        System.out.print("digite a data (dd/MM/yyyy): ");
+        LocalDate data = LocalDate.parse(sc.nextLine(), fmt);
+        System.out.print("digite o status: ");
+        String status = sc.nextLine();
+        System.out.print("digite o id do aluno: ");
+        Integer alunoID = sc.nextInt();
+        Aluno alunoMatricula = new Aluno(alunoID);
+
+
+        System.out.print("digite o id do curso: ");
+        Integer cursoID = sc.nextInt();
+        CursoDao cursoDao = new CursoDaoJDBC(DB.getConnection());
+        Curso cursoMatricula = cursoDao.findByID(cursoID);
+
+        Double valor = cursoMatricula.getPreco();
+
+
+        LocalDate data_pagamento = null;
+        String status_pagamento = "PENDENTE";*/
+
+        MatriculaDao matricula = new MatriculaDaoJDBC(DB.getConnection());
+        //Matricula m = new Matricula(null, data, status, alunoMatricula, cursoMatricula, valor, data_pagamento, status_pagamento);
+
+        //matricula.insert(m);
+
+        //System.out.println("Matricula inserida com sucesso!");
+        //INSERIR MATRICULA
+//-------------------------------------------------------------------//
 
     }
 }

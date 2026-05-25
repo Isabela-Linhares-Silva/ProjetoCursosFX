@@ -21,13 +21,17 @@ public class MatriculaDaoJDBC implements MatriculaDao {
         PreparedStatement st = null;
         ResultSet rs = null;
         try {
-            st = connection.prepareStatement("insert into matricula(data, status, aluno, curso, valor,dataPagamento, statusPagamento) values(?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+            st = connection.prepareStatement("insert into matricula(data, status, aluno_id, curso_id, valor,data_pagamento, status_pagamento) values(?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
             st.setDate(1, java.sql.Date.valueOf(obj.getData()));
             st.setString(2,obj.getStatus());
             st.setInt(3,obj.getAluno().getId());
             st.setInt(4,obj.getCurso().getId());
             st.setDouble(5,obj.getValor());
-            st.setDate(6, Date.valueOf(obj.getDataPagamento()));
+            if (obj.getDataPagamento() != null) {
+                st.setDate(6, Date.valueOf(obj.getDataPagamento()));
+            } else {
+                st.setNull(6, Types.DATE);
+            }
             st.setString(7, obj.getStatusPagamento());
             int linhas = st.executeUpdate();
 
