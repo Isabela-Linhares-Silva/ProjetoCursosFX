@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="282.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.aula.projetocursosfx.controller.CadastrarCursoController">
+<AnchorPane prefHeight="282.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.aula.projetocursosfx.controller.CadastrarCursoController">
    <children>
       <Label layoutX="33.0" layoutY="46.0" text="Digite o nome do Curso:">
          <font>
@@ -15,7 +15,7 @@
          </font>
       </Label>
       <Button layoutX="252.0" layoutY="234.0" mnemonicParsing="false" onAction="#onCadastrarCursoClicked" text="Cadastrar" />
-      <TextField fx:id="nomeCurso" layoutX="216.0" layoutY="44.0" prefHeight="26.0" prefWidth="233.0" promptText="nome do curso" />
+      <TextField fx:id="nomeCurso" layoutX="216.0" layoutY="44.0" prefHeight="26.0" prefWidth="233.0" promptText="Nome do curso" />
       <Label layoutX="33.0" layoutY="93.0" text="Digite a Carga Horaria:">
          <font>
             <Font size="15.0" />
@@ -31,8 +31,8 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="cargaHorariaCurso" layoutX="216.0" layoutY="90.0" prefHeight="26.0" prefWidth="233.0" />
-      <TextField fx:id="precoCurso" layoutX="216.0" layoutY="137.0" prefHeight="26.0" prefWidth="233.0" />
-      <ComboBox fx:id="professores" layoutX="216.0" layoutY="182.0" prefHeight="26.0" prefWidth="233.0" />
+      <TextField fx:id="cargaHorariaCurso" layoutX="216.0" layoutY="90.0" prefHeight="26.0" prefWidth="233.0" promptText="Carga Horaria" />
+      <TextField fx:id="precoCurso" layoutX="216.0" layoutY="137.0" prefHeight="26.0" prefWidth="233.0" promptText="Valor R$" />
+      <ComboBox fx:id="professores" layoutX="216.0" layoutY="182.0" prefHeight="26.0" prefWidth="233.0" promptText="Selecione o Professor" />
    </children>
 </AnchorPane>

@@ -189,6 +189,9 @@ public class TesteMain {
 //-------------------------------------------------------------------//
 
         //curso.findAll().forEach(System.out::println);
-        //ENCONTRAR TODOS!!
+        //ENCONTRAR TODOS CURSOS!!
+//-------------------------------------------------------------------//
+
+
     }
 }

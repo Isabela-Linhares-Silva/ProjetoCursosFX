@@ -54,14 +54,14 @@ public class CadastrarCursoController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {//executado assim que a tela e iniciada
         try {
-            List<Professor> listaTurmas = DaoFactory.createProfessorDao().findAll();
+            List<Professor> listaProfessores = DaoFactory.createProfessorDao().findAll();
+            List<String> nomeProfessores = new ArrayList<>();
 
-            List<String> nomeProfessor = new ArrayList<>();
-            for(Professor p : listaTurmas){
-                nomeProfessor.add(p.getNome());
+            for(Professor p : listaProfessores){
+                nomeProfessores.add(p.getNome());
             }
 
-            ObservableList obs = FXCollections.observableArrayList(nomeProfessor);
+            ObservableList obs = FXCollections.observableArrayList(nomeProfessores);
             professores.setItems(obs);
 
         } catch (Exception e) {
