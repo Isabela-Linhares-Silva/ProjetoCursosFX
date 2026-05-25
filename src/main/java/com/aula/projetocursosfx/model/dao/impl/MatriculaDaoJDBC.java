@@ -7,6 +7,7 @@ import com.aula.projetocursosfx.model.entities.Curso;
 import com.aula.projetocursosfx.model.entities.Matricula;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,18 +22,17 @@ public class MatriculaDaoJDBC implements MatriculaDao {
         PreparedStatement st = null;
         ResultSet rs = null;
         try {
-            st = connection.prepareStatement("insert into matricula(data, status, aluno_id, curso_id, valor,data_pagamento, status_pagamento) values(?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
-            st.setDate(1, java.sql.Date.valueOf(obj.getData()));
-            st.setString(2,obj.getStatus());
-            st.setInt(3,obj.getAluno().getId());
-            st.setInt(4,obj.getCurso().getId());
-            st.setDouble(5,obj.getValor());
+            st = connection.prepareStatement("insert into matricula(status, aluno_id, curso_id, valor,data_pagamento, status_pagamento) values(?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+            st.setString(1,obj.getStatus());
+            st.setInt(2,obj.getAluno().getId());
+            st.setInt(3,obj.getCurso().getId());
+            st.setDouble(4,obj.getValor());
             if (obj.getDataPagamento() != null) {
-                st.setDate(6, Date.valueOf(obj.getDataPagamento()));
+                st.setDate(5, Date.valueOf(obj.getDataPagamento()));
             } else {
-                st.setNull(6, Types.DATE);
+                st.setNull(5, Types.DATE);
             }
-            st.setString(7, obj.getStatusPagamento());
+            st.setString(6, obj.getStatusPagamento());
             int linhas = st.executeUpdate();
 
             if (linhas != 0 ){
@@ -56,13 +56,18 @@ public class MatriculaDaoJDBC implements MatriculaDao {
         PreparedStatement st = null;
         try {
             st = connection.prepareStatement(
-                    "UPDATE matricula SET data=?, status=?, aluno=?, curso=? WHERE id=?"
+                    "UPDATE matricula SET status=?, data_pagamento=?, status_pagamento=? WHERE id=?"
             );
-            st.setDate(1, Date.valueOf(obj.getData()));
-            st.setString(2, obj.getStatus());
-            st.setInt(3, obj.getAluno().getId());
-            st.setInt(4, obj.getCurso().getId());
-            st.setInt(5, obj.getId());
+            st.setString(1, obj.getStatus());
+            if (obj.getDataPagamento() != null) {
+                st.setDate(2, Date.valueOf(obj.getDataPagamento()));
+            } else {
+                st.setNull(2, Types.DATE);
+            }
+            st.setString(3, obj.getStatusPagamento());
+            st.setInt(4, obj.getId());
+
+            st.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }finally {
@@ -85,33 +90,42 @@ public class MatriculaDaoJDBC implements MatriculaDao {
         }
     }
 
-    public Matricula findByID(Integer id){
+    public Matricula findByID(Integer id) {
         PreparedStatement st = null;
         ResultSet rs = null;
+
         try {
             st = connection.prepareStatement("select * from matricula where id = ?");
             st.setInt(1, id);
             rs = st.executeQuery();
 
-            if (rs.next()){
+            if (rs.next()) {
+
+                Date dataSql = rs.getDate("data_pagamento");
+                LocalDate dataPagamento = null;
+
+                if (dataSql != null) {
+                    dataPagamento = dataSql.toLocalDate();
+                }
+
                 return new Matricula(
                         rs.getInt("id"),
-                        rs.getDate("data").toLocalDate(),
                         rs.getString("status"),
-                        new Aluno(rs.getInt("aluno")),
-                        new Curso(rs.getInt("curso")),
+                        new Aluno(rs.getInt("aluno_id")),
+                        new Curso(rs.getInt("curso_id")),
                         rs.getDouble("valor"),
-                        rs.getDate("dataPagamento").toLocalDate(),
-                        rs.getString("statusPagamento")
+                        dataPagamento,
+                        rs.getString("status_pagamento")
                 );
             }
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }
-        finally {
+        } finally {
             DB.closeResultSet(rs);
             DB.closeStatement(st);
         }
+
         return null;
     }
 
@@ -125,7 +139,13 @@ public class MatriculaDaoJDBC implements MatriculaDao {
             List<Matricula> lista = new ArrayList<>();
 
             while (rs.next()){
-                lista.add(new Matricula(rs.getInt("id"),rs.getDate("data").toLocalDate(),rs.getString("status"),new Aluno(rs.getInt("aluno")),new Curso(rs.getInt("curso")),rs.getDouble("valor"),rs.getDate("dataPagamento").toLocalDate(),rs.getString("statusPagamento")));
+                Date dataSql = rs.getDate("data_pagamento");
+                LocalDate dataPagamento = null;
+                if (dataSql != null) {
+                    dataPagamento = dataSql.toLocalDate();
+                }
+
+                lista.add(new Matricula(rs.getInt("id") ,rs.getString("status"),new Aluno(rs.getInt("aluno_id")),new Curso(rs.getInt("curso_id")),rs.getDouble("valor"),rs.getDate("data_pagamento").toLocalDate(),rs.getString("status_pagamento")));
             }
             return lista;
         } catch (SQLException e) {

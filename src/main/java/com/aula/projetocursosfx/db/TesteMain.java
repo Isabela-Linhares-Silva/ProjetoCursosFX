@@ -198,9 +198,7 @@ public class TesteMain {
         //ENCONTRAR TODOS CURSOS!!
 //-------------------------------------------------------------------//
 
-        /*DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        System.out.print("digite a data (dd/MM/yyyy): ");
-        LocalDate data = LocalDate.parse(sc.nextLine(), fmt);
+        /*
         System.out.print("digite o status: ");
         String status = sc.nextLine();
         System.out.print("digite o id do aluno: ");
@@ -216,7 +214,7 @@ public class TesteMain {
         Double valor = cursoMatricula.getPreco();
 
 
-        LocalDate data_pagamento = null;
+        LocalDate data_pagamento = null; //LOGICA FALTANDO
         String status_pagamento = "PENDENTE";*/
 
         MatriculaDao matricula = new MatriculaDaoJDBC(DB.getConnection());
@@ -226,6 +224,52 @@ public class TesteMain {
 
         //System.out.println("Matricula inserida com sucesso!");
         //INSERIR MATRICULA
+//-------------------------------------------------------------------//
+
+        /*System.out.print("id que quer atualizar: ");
+        int id = sc.nextInt();
+
+        Matricula resultado = matricula.findByID(id);
+        if (resultado == null){
+            System.out.println("curso nao econtrado.");
+        }
+        else{
+            sc.nextLine();
+            System.out.print("novo staus do curso: ");
+            String status = sc.nextLine();
+            System.out.print("novo status pagamento: ");
+            String status_pagamento = sc.nextLine();
+
+            resultado.setStatus(status);
+            resultado.setStatusPagamento(status_pagamento);
+            resultado.setDataPagamento(LocalDate.now());
+
+            matricula.update(resultado);
+            System.out.println("Matricula atualizada com sucesso!!");
+            //ATUALIZAR MATRICULA
+        }*/
+//-------------------------------------------------------------------//
+
+        /*System.out.print("id da matricula que será deletado: ");
+        int id = sc.nextInt();
+        matricula.deleteByID(id);
+        System.out.println("matricula deletada");*/
+        //DELETAR MATRICULA!!
+//-------------------------------------------------------------------//
+
+        /*System.out.print("digite o id da matricula que quer procurar: ");
+        int id = sc.nextInt();
+        Matricula resultado = matricula.findByID(id);
+        if (resultado == null){
+            System.out.println("matricula nao econtrado.");
+        }else{
+            System.out.println(resultado);
+        }*/
+        //ENCONTRAR MATRICULA!!
+//-------------------------------------------------------------------//
+
+        //matricula.findAll().forEach(System.out::println);
+        //ENCONTRAR TODAS AS MATRICULAS!!
 //-------------------------------------------------------------------//
 
     }

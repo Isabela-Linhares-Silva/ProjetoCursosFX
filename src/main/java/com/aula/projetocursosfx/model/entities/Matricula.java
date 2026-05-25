@@ -5,7 +5,6 @@ import java.time.LocalDate;
 
 public class Matricula {
     private Integer id;
-    private LocalDate data;
     private String status;
     private Aluno aluno;
     private Curso curso;
@@ -15,9 +14,8 @@ public class Matricula {
     private LocalDate dataPagamento;
     private String statusPagamento;
 
-    public Matricula(Integer id, LocalDate data, String status, Aluno aluno, Curso curso, Double valor, LocalDate dataPagamento,String statusPagamento){
+    public Matricula(Integer id, String status, Aluno aluno, Curso curso, Double valor, LocalDate dataPagamento,String statusPagamento){
         this.id = id;
-        this.data = data;
         this.status = status;
         this.aluno = aluno;
         this.curso = curso;
@@ -33,13 +31,6 @@ public class Matricula {
     }
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public LocalDate getData() {
-        return data;
-    }
-    public void setData(LocalDate data) {
-        this.data = data;
     }
 
     public String getStatus() {
@@ -80,7 +71,6 @@ public class Matricula {
                 "id: "+ id +
                 ", aluno: " +(aluno != null ? aluno.getNome() : "null")+// se nao fizer isso pode dar NullPOinterException
                 ", curso: "+ (curso != null ? curso.getNome() : "null") +
-                ", data: "+ data+
                 ", status: "+ status+
                 ", valor: "+ valor+
                 ", data do pagamento: " + dataPagamento+
