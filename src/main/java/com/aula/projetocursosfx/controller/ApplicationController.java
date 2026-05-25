@@ -17,4 +17,12 @@ public class ApplicationController {
     protected void onCadastrarAlunoClicked(){
         Application.criarTela("controller/cadastrar-aluno-view.fxml");
     }
+    @FXML
+    protected void onBuscarAlunoClicked(){Application.criarTela("controller/buscar-aluno-view.fxml");}
+    @FXML
+    protected void onBuscarProfessorClicked(){Application.criarTela("controller/buscar-professor-view.fxml");}
+    @FXML
+    protected void onCadastrarProfessorClicked(){
+        Application.criarTela("controller/cadastrar-professor-view.fxml");
+    }
 }
