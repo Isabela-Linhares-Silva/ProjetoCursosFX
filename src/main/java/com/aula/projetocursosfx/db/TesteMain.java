@@ -214,7 +214,7 @@ public class TesteMain {
         Double valor = cursoMatricula.getPreco();
 
 
-        LocalDate data_pagamento = null; //LOGICA FALTANDO
+        LocalDate data_pagamento = null; //LOGICA FALTANDO!!
         String status_pagamento = "PENDENTE";*/
 
         MatriculaDao matricula = new MatriculaDaoJDBC(DB.getConnection());
@@ -223,7 +223,7 @@ public class TesteMain {
         //matricula.insert(m);
 
         //System.out.println("Matricula inserida com sucesso!");
-        //INSERIR MATRICULA
+        //INSERIR MATRICULA!!
 //-------------------------------------------------------------------//
 
         /*System.out.print("id que quer atualizar: ");
@@ -246,7 +246,7 @@ public class TesteMain {
 
             matricula.update(resultado);
             System.out.println("Matricula atualizada com sucesso!!");
-            //ATUALIZAR MATRICULA
+            //ATUALIZAR MATRICULA!!
         }*/
 //-------------------------------------------------------------------//
 
