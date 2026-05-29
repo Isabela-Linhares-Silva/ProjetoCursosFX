@@ -5,6 +5,7 @@ import com.aula.projetocursosfx.model.dao.MatriculaDao;
 import com.aula.projetocursosfx.model.entities.Aluno;
 import com.aula.projetocursosfx.model.entities.Curso;
 import com.aula.projetocursosfx.model.entities.Matricula;
+import com.aula.projetocursosfx.model.entities.Professor;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -95,7 +96,16 @@ public class MatriculaDaoJDBC implements MatriculaDao {
         ResultSet rs = null;
 
         try {
-            st = connection.prepareStatement("select * from matricula where id = ?");
+            st = connection.prepareStatement(
+                    "SELECT m.*, " +
+                            "a.nome AS aluno_nome, a.email, " +
+                            "c.nome AS curso_nome, c.preco, c.carga_horaria, c.professor_id " +
+                            "FROM matricula m " +
+                            "JOIN aluno a ON m.aluno_id = a.id " +
+                            "JOIN curso c ON m.curso_id = c.id " +
+                            "WHERE m.id = ?"
+            );
+
             st.setInt(1, id);
             rs = st.executeQuery();
 
@@ -108,11 +118,25 @@ public class MatriculaDaoJDBC implements MatriculaDao {
                     dataPagamento = dataSql.toLocalDate();
                 }
 
+                Aluno aluno = new Aluno(
+                        rs.getInt("aluno_id"),
+                        rs.getString("aluno_nome"),
+                        rs.getString("email")
+                );
+
+                Curso curso = new Curso(
+                        rs.getInt("curso_id"),
+                        rs.getString("curso_nome"),
+                        rs.getInt("carga_horaria"),
+                        rs.getDouble("preco"),
+                        new Professor(rs.getInt("professor_id"))
+                );
+
                 return new Matricula(
                         rs.getInt("id"),
                         rs.getString("status"),
-                        new Aluno(rs.getInt("aluno_id")),
-                        new Curso(rs.getInt("curso_id")),
+                        aluno,
+                        curso,
                         rs.getDouble("valor"),
                         dataPagamento,
                         rs.getString("status_pagamento")
@@ -129,29 +153,63 @@ public class MatriculaDaoJDBC implements MatriculaDao {
         return null;
     }
 
-    public List<Matricula> findAll(){
+    public List<Matricula> findAll() {
         PreparedStatement st = null;
         ResultSet rs = null;
 
-        try{
-            st = connection.prepareStatement("select * from matricula");
+        try {
+            st = connection.prepareStatement(
+                    "SELECT m.*, " +
+                            "a.nome AS aluno_nome, a.email, " +
+                            "c.nome AS curso_nome, c.preco " +
+                            "FROM matricula m " +
+                            "JOIN aluno a ON m.aluno_id = a.id " +
+                            "JOIN curso c ON m.curso_id = c.id"
+            );
+
             rs = st.executeQuery();
+
             List<Matricula> lista = new ArrayList<>();
 
-            while (rs.next()){
+            while (rs.next()) {
+
                 Date dataSql = rs.getDate("data_pagamento");
                 LocalDate dataPagamento = null;
+
                 if (dataSql != null) {
                     dataPagamento = dataSql.toLocalDate();
                 }
 
-                lista.add(new Matricula(rs.getInt("id") ,rs.getString("status"),new Aluno(rs.getInt("aluno_id")),new Curso(rs.getInt("curso_id")),rs.getDouble("valor"),rs.getDate("data_pagamento").toLocalDate(),rs.getString("status_pagamento")));
+                Aluno aluno = new Aluno(
+                        rs.getInt("aluno_id"),
+                        rs.getString("aluno_nome"),
+                        rs.getString("email")
+                );
+
+                Curso curso = new Curso(
+                        rs.getInt("curso_id"),
+                        rs.getString("curso_nome"),
+                        null, // carga horaria (se quiser, adiciona no SELECT)
+                        rs.getDouble("preco"),
+                        null // professor
+                );
+
+                lista.add(new Matricula(
+                        rs.getInt("id"),
+                        rs.getString("status"),
+                        aluno,
+                        curso,
+                        rs.getDouble("valor"),
+                        dataPagamento,
+                        rs.getString("status_pagamento")
+                ));
             }
+
             return lista;
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }
-        finally {
+        } finally {
             DB.closeResultSet(rs);
             DB.closeStatement(st);
         }

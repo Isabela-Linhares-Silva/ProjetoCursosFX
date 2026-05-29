@@ -72,7 +72,7 @@ public class TesteMain {
 //-------------------------------------------------------------------//
 
         //aluno.findAll().forEach(System.out::println);
-        //ENCONTRAR TODOS!!
+        //ENCONTRAR TODOS ALUNOS!!
 //-------------------------------------------------------------------//
 
         /*System.out.print("nome do professor: ");
@@ -125,7 +125,7 @@ public class TesteMain {
         //ENCONTRAR PROFESSOR!!
 //-------------------------------------------------------------------//
         //professor.findAll().forEach(System.out::println);
-        //ENCONTRAR TODOS!!
+        //ENCONTRAR TODOS PROFESSORES!!
 
 //-------------------------------------------------------------------//
 
@@ -142,7 +142,7 @@ public class TesteMain {
         // cria o curso com o professor
 
         //aluno.insert(new Aluno(id, nome, email));
-        //CursoDao curso = new CursoDaoJDBC(DB.getConnection());
+        CursoDao curso = new CursoDaoJDBC(DB.getConnection());
 
         //curso.insert(new Curso(nome, carga_horaria, preco, professorCurso));
 
@@ -180,7 +180,7 @@ public class TesteMain {
         int id = sc.nextInt();
         curso.deleteByID(id);
         System.out.println("curso deletado");*/
-        //DELETAR PROFESSOR!!
+        //DELETAR CURSO!!
 //-------------------------------------------------------------------//
 
         /*System.out.print("digite o id do curso que quer procurar: ");
@@ -198,8 +198,8 @@ public class TesteMain {
         //ENCONTRAR TODOS CURSOS!!
 //-------------------------------------------------------------------//
 
-        /*
-        System.out.print("digite o status: ");
+
+        /*System.out.print("digite o status: ");
         String status = sc.nextLine();
         System.out.print("digite o id do aluno: ");
         Integer alunoID = sc.nextInt();
@@ -214,11 +214,11 @@ public class TesteMain {
         Double valor = cursoMatricula.getPreco();
 
 
-        LocalDate data_pagamento = null; //LOGICA FALTANDO!!
-        String status_pagamento = "PENDENTE";*/
-
+        String status_pagamento = "PAGO";
+        LocalDate data_pagamento = LocalDate.now(); //LOGICA FALTANDO!!
+        */
         MatriculaDao matricula = new MatriculaDaoJDBC(DB.getConnection());
-        //Matricula m = new Matricula(null, data, status, alunoMatricula, cursoMatricula, valor, data_pagamento, status_pagamento);
+        //Matricula m = new Matricula(null, status, alunoMatricula, cursoMatricula, valor, data_pagamento, status_pagamento);
 
         //matricula.insert(m);
 

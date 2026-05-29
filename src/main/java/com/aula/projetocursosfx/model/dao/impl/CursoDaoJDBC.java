@@ -86,18 +86,33 @@ public class CursoDaoJDBC implements CursoDao {
     public Curso findByID(Integer id){
         PreparedStatement st = null;
         ResultSet rs = null;
+
         try{
-            st = connection.prepareStatement("select * from curso where id =?");
+            st = connection.prepareStatement(
+                    "SELECT c.*, " +
+                            "p.nome AS professor_nome, p.especialidade " +
+                            "FROM curso c " +
+                            "JOIN professor p ON c.professor_id = p.id " +
+                            "WHERE c.id = ?"
+            );
+
             st.setInt(1,id);
             rs= st.executeQuery();
 
             if (rs.next()){
+
+                Professor professor = new Professor(
+                        rs.getInt("professor_id"),
+                        rs.getString("professor_nome"),
+                        rs.getString("especialidade")
+                );
+
                 return new Curso(
                         rs.getInt("id"),
                         rs.getString("nome"),
                         rs.getInt("carga_horaria"),
                         rs.getDouble("preco"),
-                        new Professor(rs.getInt("professor_id"))
+                        professor
                 );
             }
 
@@ -107,27 +122,48 @@ public class CursoDaoJDBC implements CursoDao {
             DB.closeResultSet(rs);
             DB.closeStatement(st);
         }
+
         return null;
     }
 
     public List<Curso> findAll(){
         PreparedStatement st = null;
         ResultSet rs = null;
+
         try {
-            st = connection.prepareStatement("select * from curso");
+            st = connection.prepareStatement(
+                    "SELECT c.*, " +
+                            "p.nome AS professor_nome, p.especialidade " +
+                            "FROM curso c " +
+                            "JOIN professor p ON c.professor_id = p.id"
+            );
 
             rs = st.executeQuery();
+
             List<Curso> lista = new ArrayList<>();
 
             while (rs.next()){
-                lista.add(new Curso(rs.getInt("id"), rs.getString("nome"),rs.getInt("carga_horaria"),rs.getDouble("preco"),new Professor(rs.getInt("professor_id"))));
+
+                Professor professor = new Professor(
+                        rs.getInt("professor_id"),
+                        rs.getString("professor_nome"),
+                        rs.getString("especialidade")
+                );
+
+                lista.add(new Curso(
+                        rs.getInt("id"),
+                        rs.getString("nome"),
+                        rs.getInt("carga_horaria"),
+                        rs.getDouble("preco"),
+                        professor
+                ));
             }
+
             return lista;
-        }
-        catch (SQLException e){
+
+        } catch (SQLException e){
             throw new RuntimeException(e);
-        }
-        finally {
+        } finally {
             DB.closeResultSet(rs);
             DB.closeStatement(st);
         }
