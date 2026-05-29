@@ -28,7 +28,6 @@ CREATE TABLE matricula (
        curso_id INT,
        FOREIGN KEY (aluno_id) REFERENCES aluno(id),
        FOREIGN KEY (curso_id) REFERENCES curso(id),
-       data DATE,
        status VARCHAR(50),
        valor DOUBLE,
        data_pagamento DATE,
