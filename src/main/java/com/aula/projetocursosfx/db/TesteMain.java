@@ -85,7 +85,7 @@ public class TesteMain {
         //professor.insert(new Professor(nome, especialidade));
         //System.out.println("professor inserido com sucesso!");
 
-        //INSERIR PROFESSOR
+        //INSERIR PROFESSOR!!
 //-------------------------------------------------------------------//
 
        /* System.out.print("id que quer atualizar: ");
@@ -147,7 +147,7 @@ public class TesteMain {
         //curso.insert(new Curso(nome, carga_horaria, preco, professorCurso));
 
         //System.out.println("Curso inserido com sucesso!");
-        //INSERIR CURSO
+        //INSERIR CURSO!!
 //-------------------------------------------------------------------//
 
         /*System.out.print("id que quer atualizar: ");
@@ -172,7 +172,7 @@ public class TesteMain {
             resultado.setProfessor(novoProfessor);
 
             curso.update(resultado);
-            //ATUALIZAR CURSO
+            //ATUALIZAR CURSO!!
         }*/
 //-------------------------------------------------------------------//
 
