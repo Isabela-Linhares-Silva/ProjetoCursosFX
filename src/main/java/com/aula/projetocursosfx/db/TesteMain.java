@@ -82,24 +82,24 @@ public class TesteMain {
 
         ProfessorDao professor = new ProfessorDaoJDBC(DB.getConnection());
 
-        //professor.insert(new Professor(nome, especialidade));
-        //System.out.println("professor inserido com sucesso!");
+        /*professor.insert(new Professor(nome, especialidade));
+        System.out.println("professor inserido com sucesso!");*/
 
         //INSERIR PROFESSOR!!
 //-------------------------------------------------------------------//
 
-       /* System.out.print("id que quer atualizar: ");
+        /*System.out.print("id que quer atualizar: ");
         int id = sc.nextInt();
 
         Professor resultado = professor.findByID(id);
         if (resultado == null){
-            System.out.println("aluno nao econtrado.");
+            System.out.println("professor nao encontrado.");
         }
         else{
             sc.nextLine();
             System.out.print("novo nome: ");
             resultado.setNome(sc.nextLine());
-            System.out.print("novo especialidade: ");
+            System.out.print("nova especialidade: ");
             resultado.setEspecialidade(sc.next());
 
             professor.update(resultado);
@@ -118,7 +118,7 @@ public class TesteMain {
         int id = sc.nextInt();
         Professor resultado = professor.findByID(id);
         if (resultado == null){
-            System.out.println("professor nao econtrado.");
+            System.out.println("professor nao encontrado.");
         }else{
             System.out.println(resultado);
         }*/
@@ -139,11 +139,9 @@ public class TesteMain {
         Integer professorId = sc.nextInt();
         Professor professorCurso = new Professor(professorId);*/
 
-        // cria o curso com o professor
-
-        //aluno.insert(new Aluno(id, nome, email));
         CursoDao curso = new CursoDaoJDBC(DB.getConnection());
 
+        // cria o curso com o professor
         //curso.insert(new Curso(nome, carga_horaria, preco, professorCurso));
 
         //System.out.println("Curso inserido com sucesso!");
@@ -155,7 +153,7 @@ public class TesteMain {
 
         Curso resultado = curso.findByID(id);
         if (resultado == null){
-            System.out.println("curso nao econtrado.");
+            System.out.println("curso nao encontrado.");
         }
         else{
             sc.nextLine();
@@ -181,13 +179,12 @@ public class TesteMain {
         curso.deleteByID(id);
         System.out.println("curso deletado");*/
         //DELETAR CURSO!!
-//-------------------------------------------------------------------//
-
+//------------------------------------------------------------------//-
         /*System.out.print("digite o id do curso que quer procurar: ");
         int id = sc.nextInt();
         Curso resultado = curso.findByID(id);
         if (resultado == null){
-            System.out.println("curso nao econtrado.");
+            System.out.println("curso nao encontrado.");
         }else{
             System.out.println(resultado);
         }*/
@@ -231,11 +228,11 @@ public class TesteMain {
 
         Matricula resultado = matricula.findByID(id);
         if (resultado == null){
-            System.out.println("curso nao econtrado.");
+            System.out.println("Matricula nao encontrado.");
         }
         else{
             sc.nextLine();
-            System.out.print("novo staus do curso: ");
+            System.out.print("novo status do curso: ");
             String status = sc.nextLine();
             System.out.print("novo status pagamento: ");
             String status_pagamento = sc.nextLine();
