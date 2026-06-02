@@ -1,6 +1,7 @@
 package com.aula.projetocursosfx.model.dao.impl;
 
 import com.aula.projetocursosfx.db.DB;
+import com.aula.projetocursosfx.exceptions.MatriculaNaoEncontradaException;
 import com.aula.projetocursosfx.model.dao.MatriculaDao;
 import com.aula.projetocursosfx.model.entities.Aluno;
 import com.aula.projetocursosfx.model.entities.Curso;
@@ -91,7 +92,10 @@ public class MatriculaDaoJDBC implements MatriculaDao {
         }
     }
 
-    public Matricula findByID(Integer id) {
+    @Override
+    public Matricula findByID(Integer id)
+            throws MatriculaNaoEncontradaException {
+
         PreparedStatement st = null;
         ResultSet rs = null;
 
@@ -143,14 +147,16 @@ public class MatriculaDaoJDBC implements MatriculaDao {
                 );
             }
 
+            throw new MatriculaNaoEncontradaException(
+                    "Matrícula com ID " + id + " não encontrada."
+            );
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
             DB.closeResultSet(rs);
             DB.closeStatement(st);
         }
-
-        return null;
     }
 
     public List<Matricula> findAll() {

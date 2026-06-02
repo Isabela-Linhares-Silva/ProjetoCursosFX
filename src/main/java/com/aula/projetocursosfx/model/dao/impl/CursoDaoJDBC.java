@@ -1,6 +1,7 @@
 package com.aula.projetocursosfx.model.dao.impl;
 
 import com.aula.projetocursosfx.db.DB;
+import com.aula.projetocursosfx.exceptions.CursoNaoEncontradoException;
 import com.aula.projetocursosfx.model.dao.CursoDao;
 import com.aula.projetocursosfx.model.entities.Curso;
 import com.aula.projetocursosfx.model.entities.Professor;
@@ -83,11 +84,14 @@ public class CursoDaoJDBC implements CursoDao {
 
     }
 
-    public Curso findByID(Integer id){
+    @Override
+    public Curso findByID(Integer id)
+            throws CursoNaoEncontradoException {
+
         PreparedStatement st = null;
         ResultSet rs = null;
 
-        try{
+        try {
             st = connection.prepareStatement(
                     "SELECT c.*, " +
                             "p.nome AS professor_nome, p.especialidade " +
@@ -96,10 +100,10 @@ public class CursoDaoJDBC implements CursoDao {
                             "WHERE c.id = ?"
             );
 
-            st.setInt(1,id);
-            rs= st.executeQuery();
+            st.setInt(1, id);
+            rs = st.executeQuery();
 
-            if (rs.next()){
+            if (rs.next()) {
 
                 Professor professor = new Professor(
                         rs.getInt("professor_id"),
@@ -116,14 +120,16 @@ public class CursoDaoJDBC implements CursoDao {
                 );
             }
 
+            throw new CursoNaoEncontradoException(
+                    "Curso com ID " + id + " não encontrado."
+            );
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
             DB.closeResultSet(rs);
             DB.closeStatement(st);
         }
-
-        return null;
     }
 
     public List<Curso> findAll(){

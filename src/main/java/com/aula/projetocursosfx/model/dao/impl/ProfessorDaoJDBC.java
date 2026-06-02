@@ -1,6 +1,7 @@
 package com.aula.projetocursosfx.model.dao.impl;
 
 import com.aula.projetocursosfx.db.DB;
+import com.aula.projetocursosfx.exceptions.ProfessorNaoEncontradoException;
 import com.aula.projetocursosfx.model.dao.ProfessorDao;
 import com.aula.projetocursosfx.model.entities.Professor;
 
@@ -77,24 +78,39 @@ public class ProfessorDaoJDBC implements ProfessorDao {
         }
     }
 
-    public Professor findByID(Integer id){
+    @Override
+    public Professor findByID(Integer id)
+            throws ProfessorNaoEncontradoException {
+
         PreparedStatement st = null;
         ResultSet rs = null;
+
         try {
-            st = connection.prepareStatement("select * from professor where id =?");
-            st.setInt(1,id);
+            st = connection.prepareStatement(
+                    "SELECT * FROM professor WHERE id = ?"
+            );
+
+            st.setInt(1, id);
             rs = st.executeQuery();
-            if (rs.next()){
-                return new Professor(rs.getInt(1),rs.getString(2),rs.getString(3));
+
+            if (rs.next()) {
+                return new Professor(
+                        rs.getInt("id"),
+                        rs.getString("nome"),
+                        rs.getString("especialidade")
+                );
             }
+
+            throw new ProfessorNaoEncontradoException(
+                    "Professor com ID " + id + " não encontrado."
+            );
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }
-        finally {
+        } finally {
             DB.closeResultSet(rs);
             DB.closeStatement(st);
         }
-        return null;
     }
 
     public List<Professor> findAll(){

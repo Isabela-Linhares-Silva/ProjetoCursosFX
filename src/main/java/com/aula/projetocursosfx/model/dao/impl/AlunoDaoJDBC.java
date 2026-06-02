@@ -1,6 +1,7 @@
 package com.aula.projetocursosfx.model.dao.impl;
 
 import com.aula.projetocursosfx.db.DB;
+import com.aula.projetocursosfx.exceptions.AlunoNaoEncontradoException;
 import com.aula.projetocursosfx.model.dao.AlunoDao;
 import com.aula.projetocursosfx.model.entities.Aluno;
 
@@ -76,30 +77,38 @@ public class AlunoDaoJDBC implements AlunoDao {
     }
 
     @Override
-    public Aluno findByID(Integer id) {
+    public Aluno findByID(Integer id)
+            throws AlunoNaoEncontradoException {
+
         PreparedStatement st = null;
         ResultSet rs = null;
 
         try {
-            st = connection.prepareStatement("SELECT * FROM aluno WHERE id=?");
+            st = connection.prepareStatement(
+                    "SELECT * FROM aluno WHERE id = ?"
+            );
+
             st.setInt(1, id);
             rs = st.executeQuery();
-            if(rs.next()) {
+
+            if (rs.next()) {
                 return new Aluno(
                         rs.getInt("id"),
                         rs.getString("nome"),
                         rs.getString("email")
                 );
             }
-        }
-        catch(SQLException e){
+
+            throw new AlunoNaoEncontradoException(
+                    "Aluno com ID " + id + " não encontrado."
+            );
+
+        } catch (SQLException e) {
             throw new RuntimeException(e);
-        }
-        finally {
+        } finally {
             DB.closeResultSet(rs);
             DB.closeStatement(st);
         }
-        return null;
     }
 
     @Override
