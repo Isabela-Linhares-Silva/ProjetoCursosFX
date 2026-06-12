@@ -12,7 +12,7 @@ public class Application extends javafx.application.Application {
     private static Scene scene;
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("controller/hello-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("controller/main-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         stage.setTitle("Pagina Inicial");
         stage.setScene(scene);
