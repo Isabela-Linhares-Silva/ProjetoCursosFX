@@ -1,6 +1,7 @@
 package com.aula.projetocursosfx.model.dao.impl;
 
 import com.aula.projetocursosfx.db.DB;
+import com.aula.projetocursosfx.exceptions.CursoJaMatriculadoException;
 import com.aula.projetocursosfx.exceptions.MatriculaNaoEncontradaException;
 import com.aula.projetocursosfx.model.dao.MatriculaDao;
 import com.aula.projetocursosfx.model.entities.Aluno;
@@ -20,38 +21,62 @@ public class MatriculaDaoJDBC implements MatriculaDao {
         this.connection = connection;
     }
 
-    public void insert(Matricula obj){
+    public void insert(Matricula obj) throws CursoJaMatriculadoException {
+
         PreparedStatement st = null;
         ResultSet rs = null;
+
         try {
-            st = connection.prepareStatement("insert into matricula(status, aluno_id, curso_id, valor,data_pagamento, status_pagamento) values(?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
-            st.setString(1,obj.getStatus());
-            st.setInt(2,obj.getAluno().getId());
-            st.setInt(3,obj.getCurso().getId());
-            st.setDouble(4,obj.getValor());
+
+            PreparedStatement verifica = connection.prepareStatement(
+                    "SELECT * FROM matricula WHERE aluno_id = ? AND curso_id = ?"
+            );
+
+            verifica.setInt(1, obj.getAluno().getId());
+            verifica.setInt(2, obj.getCurso().getId());
+
+            ResultSet rsVerifica = verifica.executeQuery();
+
+            if (rsVerifica.next()) {
+                throw new CursoJaMatriculadoException(
+                        "O aluno já está matriculado neste curso."
+                );
+            }
+
+            st = connection.prepareStatement(
+                    "insert into matricula(status, aluno_id, curso_id, valor, data_pagamento, status_pagamento) values(?,?,?,?,?,?)",
+                    Statement.RETURN_GENERATED_KEYS
+            );
+
+            st.setString(1, obj.getStatus());
+            st.setInt(2, obj.getAluno().getId());
+            st.setInt(3, obj.getCurso().getId());
+            st.setDouble(4, obj.getValor());
+
             if (obj.getDataPagamento() != null) {
                 st.setDate(5, Date.valueOf(obj.getDataPagamento()));
             } else {
                 st.setNull(5, Types.DATE);
             }
+
             st.setString(6, obj.getStatusPagamento());
+
             int linhas = st.executeUpdate();
 
-            if (linhas != 0 ){
+            if (linhas != 0) {
                 rs = st.getGeneratedKeys();
 
-                if (rs.next()){
+                if (rs.next()) {
                     obj.setId(rs.getInt(1));
                 }
             }
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }
-        finally {
+        } finally {
             DB.closeResultSet(rs);
             DB.closeStatement(st);
         }
-
     }
 
     public void update(Matricula obj){

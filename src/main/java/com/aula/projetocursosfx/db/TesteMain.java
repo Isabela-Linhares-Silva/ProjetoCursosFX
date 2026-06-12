@@ -1,5 +1,9 @@
 package com.aula.projetocursosfx.db;
 
+import com.aula.projetocursosfx.exceptions.AlunoNaoEncontradoException;
+import com.aula.projetocursosfx.exceptions.CursoJaMatriculadoException;
+import com.aula.projetocursosfx.exceptions.CursoNaoEncontradoException;
+import com.aula.projetocursosfx.exceptions.EmailInvalidoException;
 import com.aula.projetocursosfx.model.dao.AlunoDao;
 import com.aula.projetocursosfx.model.dao.CursoDao;
 import com.aula.projetocursosfx.model.dao.MatriculaDao;
@@ -28,28 +32,64 @@ public class TesteMain {
 
         AlunoDao aluno = new AlunoDaoJDBC(DB.getConnection());
 
-        /*aluno.insert(new Aluno(nome, email));
-        System.out.println("aluno inserido com sucesso");*/
+        /*try {
+
+            aluno.insert(new Aluno(nome, email));
+
+            System.out.println("Aluno inserido com sucesso!");
+
+        } catch (EmailInvalidoException e) {
+
+            System.out.println("\nERRO: " + e.getMessage());
+
+            System.out.println("\nUm email válido deve conter:");
+            System.out.println("- Letras e números");
+            System.out.println("- O caractere @");
+            System.out.println("- Um domínio após o @");
+            System.out.println("\nExemplos válidos:");
+            System.out.println("joao@gmail.com");
+            System.out.println("maria123@hotmail.com");
+            System.out.println("aluno@empresa.com");
+
+        }*/
         //INSERIR ALUNO!!
 //-------------------------------------------------------------------//
 
+        /*try {
 
-        /*System.out.print("id que quer atualizar: ");
-        int id = sc.nextInt();
+            System.out.print("id que quer atualizar: ");
+            int id = sc.nextInt();
 
-        Aluno resultado = aluno.findByID(id);
-        if (resultado == null){
-            System.out.println("aluno nao econtrado.");
-        }
-        else{
+            Aluno resultado = aluno.findByID(id);
+
             sc.nextLine();
+
             System.out.print("novo nome: ");
             resultado.setNome(sc.nextLine());
+
             System.out.print("novo email: ");
-            resultado.setEmail(sc.next());
+            resultado.setEmail(sc.nextLine());
 
             aluno.update(resultado);
+
             System.out.println("aluno atualizado!");
+
+        } catch (AlunoNaoEncontradoException e) {
+
+            System.out.println(e.getMessage());
+
+        } catch (EmailInvalidoException e) {
+
+            System.out.println(e.getMessage());
+            System.out.println("\nUm email válido deve conter:");
+            System.out.println("- Letras e números");
+            System.out.println("- O caractere @");
+            System.out.println("- Um domínio após o @");
+            System.out.println("\nExemplos válidos:");
+            System.out.println("joao@gmail.com");
+            System.out.println("maria123@hotmail.com");
+            System.out.println("aluno@empresa.com");
+
         }*/
         //ATUALIZAR ALUNO!!
 //-------------------------------------------------------------------//
@@ -195,31 +235,51 @@ public class TesteMain {
         //ENCONTRAR TODOS CURSOS!!
 //-------------------------------------------------------------------//
 
+        /*try {
 
-        /*System.out.print("digite o status: ");
-        String status = sc.nextLine();
-        System.out.print("digite o id do aluno: ");
-        Integer alunoID = sc.nextInt();
-        Aluno alunoMatricula = new Aluno(alunoID);
+            System.out.print("digite o status: ");
+            String status = sc.nextLine();
 
+            System.out.print("digite o id do aluno: ");
+            Integer alunoID = sc.nextInt();
+            Aluno alunoMatricula = new Aluno(alunoID);
 
-        System.out.print("digite o id do curso: ");
-        Integer cursoID = sc.nextInt();
-        CursoDao cursoDao = new CursoDaoJDBC(DB.getConnection());
-        Curso cursoMatricula = cursoDao.findByID(cursoID);
+            System.out.print("digite o id do curso: ");
+            Integer cursoID = sc.nextInt();
 
-        Double valor = cursoMatricula.getPreco();
+            CursoDao cursoDao = new CursoDaoJDBC(DB.getConnection());
+            Curso cursoMatricula = cursoDao.findByID(cursoID);
 
+            Double valor = cursoMatricula.getPreco();
 
-        String status_pagamento = "PAGO";
-        LocalDate data_pagamento = LocalDate.now(); //LOGICA FALTANDO!!
-        */
-        MatriculaDao matricula = new MatriculaDaoJDBC(DB.getConnection());
-        //Matricula m = new Matricula(null, status, alunoMatricula, cursoMatricula, valor, data_pagamento, status_pagamento);
+            String status_pagamento = "PAGO";
+            LocalDate data_pagamento = LocalDate.now();
 
-        //matricula.insert(m);
+            */MatriculaDao matricula = new MatriculaDaoJDBC(DB.getConnection());
+            /*
+            Matricula m = new Matricula(
+                    null,
+                    status,
+                    alunoMatricula,
+                    cursoMatricula,
+                    valor,
+                    data_pagamento,
+                    status_pagamento
+            );
 
-        //System.out.println("Matricula inserida com sucesso!");
+            matricula.insert(m);
+
+            System.out.println("Matricula inserida com sucesso!");
+
+        } catch (CursoJaMatriculadoException e) {
+
+            System.out.println(e.getMessage());
+
+        } catch (CursoNaoEncontradoException e) {
+
+            System.out.println(e.getMessage());
+
+        }*/
         //INSERIR MATRICULA!!
 //-------------------------------------------------------------------//
 

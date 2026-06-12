@@ -1,5 +1,6 @@
 package com.aula.projetocursosfx.controller;
 
+import com.aula.projetocursosfx.exceptions.EmailInvalidoException;
 import com.aula.projetocursosfx.model.dao.DaoFactory;
 import com.aula.projetocursosfx.model.entities.Aluno;
 import javafx.fxml.FXML;
@@ -14,7 +15,7 @@ public class ProfessorController {
     private TextField especialidadeProfessor;
 
     @FXML
-    private void onCadastrarProfessorClicked(){
+    private void onCadastrarProfessorClicked() throws EmailInvalidoException {
         Aluno a = new Aluno(nomeProfessor.getText(),especialidadeProfessor.getText());
         DaoFactory.createAlunoDao().insert(a);
         Alert alerta = new Alert(Alert.AlertType.INFORMATION);
