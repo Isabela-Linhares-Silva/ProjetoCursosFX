@@ -2,6 +2,7 @@ package com.aula.projetocursosfx.model.dao.impl;
 
 import com.aula.projetocursosfx.db.DB;
 import com.aula.projetocursosfx.exceptions.AlunoNaoEncontradoException;
+import com.aula.projetocursosfx.exceptions.EmailInvalidoException;
 import com.aula.projetocursosfx.model.dao.AlunoDao;
 import com.aula.projetocursosfx.model.entities.Aluno;
 
@@ -19,15 +20,29 @@ public class AlunoDaoJDBC implements AlunoDao {
         this.connection = connection;
     }
 
-    public void insert(Aluno obj){
+    @Override
+    public void insert(Aluno obj) throws EmailInvalidoException {
+
+        if (obj.getEmail() == null ||
+                !obj.getEmail().matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
+
+            throw new EmailInvalidoException(
+                    "Email inválido: " + obj.getEmail()
+            );
+        }
+
         PreparedStatement st = null;
+
         try {
             st = connection.prepareStatement(
                     "INSERT INTO aluno (nome, email) VALUES (?, ?)"
             );
+
             st.setString(1, obj.getNome());
             st.setString(2, obj.getEmail());
+
             st.executeUpdate();
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
@@ -35,8 +50,18 @@ public class AlunoDaoJDBC implements AlunoDao {
         }
     }
     @Override
-    public void update(Aluno obj) {
+    public void update(Aluno obj) throws EmailInvalidoException {
+
+        if (obj.getEmail() == null ||
+                !obj.getEmail().matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$")) {
+
+            throw new EmailInvalidoException(
+                    "Email inválido: " + obj.getEmail()
+            );
+        }
+
         PreparedStatement st = null;
+
         try {
             st = connection.prepareStatement(
                     "UPDATE aluno SET nome=?, email=? WHERE id=?"
@@ -48,11 +73,9 @@ public class AlunoDaoJDBC implements AlunoDao {
 
             st.executeUpdate();
 
-        }
-        catch (SQLException e){
+        } catch (SQLException e) {
             throw new RuntimeException(e);
-        }
-        finally {
+        } finally {
             DB.closeStatement(st);
         }
     }
