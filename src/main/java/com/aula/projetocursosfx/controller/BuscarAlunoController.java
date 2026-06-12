@@ -1,5 +1,6 @@
 package com.aula.projetocursosfx.controller;
 
+import com.aula.projetocursosfx.exceptions.AlunoNaoEncontradoException;
 import com.aula.projetocursosfx.model.dao.DaoFactory;
 import com.aula.projetocursosfx.model.entities.Aluno;
 import javafx.fxml.FXML;
@@ -13,7 +14,7 @@ public class BuscarAlunoController {
     private Label nomeAluno;
 
     @FXML
-    public void onBuscarAlunoClicked(){
+    public void onBuscarAlunoClicked() throws AlunoNaoEncontradoException {
         Integer id = Integer.parseInt(idAluno.getText());
         Aluno aluno = DaoFactory.createAlunoDao().findByID(id);
         nomeAluno.setText(aluno.getNome());
