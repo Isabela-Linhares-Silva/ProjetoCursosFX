@@ -1,5 +1,6 @@
 package com.aula.projetocursosfx.controller;
 
+import com.aula.projetocursosfx.exceptions.ProfessorNaoEncontradoException;
 import com.aula.projetocursosfx.model.dao.DaoFactory;
 import com.aula.projetocursosfx.model.entities.Professor;
 import javafx.fxml.FXML;
@@ -13,15 +14,18 @@ public class BuscarProfessorController {
     private Label nomeProfessor;
 
     @FXML
-    public void onBuscarProfessorClicked(){
+    public void onBuscarProfessorClicked() throws ProfessorNaoEncontradoException {
         Integer id = Integer.parseInt(idProfessor.getText());
+        try{
         Professor professor = DaoFactory.createProfessorDao().findByID(id);
         nomeProfessor.setText(professor.getNome());
+        } catch (ProfessorNaoEncontradoException e) {
+            throw new RuntimeException(e);
+        }
     }
-
     @FXML
     public void onDeletarProfessorClicked(){
         Integer id = Integer.parseInt(idProfessor.getText());
-        DaoFactory.createAlunoDao().deleteByID(id);
+        DaoFactory.createProfessorDao().deleteByID(id);
     }
 }

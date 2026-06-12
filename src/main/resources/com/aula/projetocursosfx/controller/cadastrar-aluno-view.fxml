@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="190.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.aula.projetocursosfx.controller.CadastrarAlunoController">
+<AnchorPane prefHeight="188.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.aula.projetocursosfx.controller.CadastrarAlunoController">
    <children>
       <Label layoutX="33.0" layoutY="35.0" text="Informe o nome do aluno:">
          <font>
@@ -20,6 +20,6 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="emailAluno" layoutX="230.0" layoutY="81.0" prefHeight="26.0" prefWidth="221.0" promptText="E-mail do aluno" />
+      <TextField fx:id="emailAluno" layoutX="230.0" layoutY="81.0" prefHeight="26.0" prefWidth="221.0" promptText="e-mail do aluno" />
    </children>
 </AnchorPane>
