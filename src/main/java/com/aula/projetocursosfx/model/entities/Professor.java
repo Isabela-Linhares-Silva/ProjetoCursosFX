@@ -44,10 +44,6 @@ public class Professor {
     }
     @Override
     public String toString() {
-        return "Professor{" +
-                "id: "+ id +
-                ", nome: " + nome+
-                ", especialidade: "+ especialidade+
-                '}';
+        return nome;
     }
 }
