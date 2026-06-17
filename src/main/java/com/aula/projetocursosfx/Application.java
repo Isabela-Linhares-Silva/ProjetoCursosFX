@@ -19,25 +19,6 @@ public class Application extends javafx.application.Application {
         stage.show();
     }
 
-    public static Scene getScene(){//serve para quando for trabalhar com imagens
-        return scene;
-    }
-
-    public static Scene criarTela(String url) {
-        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource(url));
-        Stage stage = new Stage();
-        Scene scene;
-        try{
-            scene = new Scene(fxmlLoader.load());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        stage.setScene(scene);
-        stage.show();
-
-        return scene;
-    }
-
     public static void main(String[] args) {
         javafx.application.Application.launch(Application.class, args);
     }
