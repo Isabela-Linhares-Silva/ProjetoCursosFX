@@ -1,5 +1,6 @@
 package com.aula.projetocursosfx.controller;
 
+import com.aula.projetocursosfx.exceptions.CursoNaoEncontradoException;
 import com.aula.projetocursosfx.exceptions.ProfessorNaoEncontradoException;
 import com.aula.projetocursosfx.model.dao.DaoFactory;
 import com.aula.projetocursosfx.model.entities.Curso;
@@ -64,16 +65,17 @@ public class CursoController implements Initializable {
 
             try {
 
-                Integer id = Integer.parseInt(idProfessor.getText());
+                Integer id = Integer.parseInt(idCurso.getText());
 
-                Professor professor =
-                        DaoFactory.createProfessorDao().findByID(id);
+                Curso curso = DaoFactory.createCursoDao().findByID(id);
 
-                nomeProfessor.setText(professor.getNome());
-                especialidadeProfessor.setText(professor.getEspecialidade());
+                nomeCurso.setText(curso.getNome());
+                cargaHorariaCurso.setText(String.valueOf(curso.getCargaHoraria()));
+                precoCurso.setText(String.valueOf(curso.getPreco()));
+                professores.setValue(curso.getProfessor());
 
             }
-            catch (ProfessorNaoEncontradoException e) {
+            catch (CursoNaoEncontradoException e) {
 
                 Alert alerta = new Alert(Alert.AlertType.ERROR);
                 alerta.setTitle("Erro");
@@ -86,18 +88,20 @@ public class CursoController implements Initializable {
         @FXML
         private void onAtualizarCursoClicked() {
 
-            Professor professor = new Professor(
-                    Integer.parseInt(idProfessor.getText()),
-                    nomeProfessor.getText(),
-                    especialidadeProfessor.getText()
+            Curso curso = new Curso(
+                    Integer.parseInt(idCurso.getText()),
+                    nomeCurso.getText(),
+                    Integer.parseInt(cargaHorariaCurso.getText()),
+                    Double.parseDouble(precoCurso.getText()), // oq é esse parse int
+                    professores.getValue()
             );
 
-            DaoFactory.createProfessorDao().update(professor);
+            DaoFactory.createCursoDao().update(curso);
 
             Alert alerta = new Alert(Alert.AlertType.INFORMATION);
             alerta.setTitle("Atualização");
             alerta.setHeaderText(null);
-            alerta.setContentText("Professor atualizado com sucesso!");
+            alerta.setContentText("Curso atualizado com sucesso!");
             alerta.showAndWait();
         }
 
@@ -106,9 +110,11 @@ public class CursoController implements Initializable {
         @FXML
         private void onLimparClicked() {
 
-            idProfessor.clear();
-            nomeProfessor.clear();
-            especialidadeProfessor.clear();
+            idCurso.clear();
+            nomeCurso.clear();
+            cargaHorariaCurso.clear();
+            precoCurso.clear();
+            professores.setValue(null);
         }
 
         @Override
@@ -119,5 +125,5 @@ public class CursoController implements Initializable {
             );
         }
     }
-}
+
 

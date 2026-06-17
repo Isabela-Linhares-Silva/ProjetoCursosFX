@@ -12,39 +12,43 @@ public class MainController {
     @FXML
     private AnchorPane contentPane;
 
-    @FXML
-    private void abrirProfessor() throws IOException {
+    private void carregarTela (String fxml){
+        try {
 
-        Parent tela = FXMLLoader.load(
-                getClass().getResource(
-                        "/com.aula.projetocursosfx.controller/cadastrar-professor-view.fxml"));
+            FXMLLoader loader =
+                    new FXMLLoader(
+                            getClass().getResource(
+                                    "/com/aula/projetocursosfx/controller/" + fxml
+                            )
+                    );
 
-        contentPane.getChildren().setAll(tela);
+            Parent root = loader.load();
+
+            contentPane.getChildren().clear();
+            contentPane.getChildren().add(root);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
-    private void abrirAluno() throws IOException {
-
-        Parent tela = FXMLLoader.load(
-                getClass().getResource(
-                        "/com.aula.projetocursosfx.controller/cadastrar-aluno-view.fxml"));
-
-        contentPane.getChildren().setAll(tela);
+    private void onProfessorClicked() {
+        carregarTela("professor-view.fxml");
     }
 
     @FXML
-    private void abrirCurso() throws IOException {
-
-        Parent tela = FXMLLoader.load(
-                getClass().getResource(
-                        "/com.aula.projetocursosfx.controller/cadastrar-curso-view.fxml"));
-
-        contentPane.getChildren().setAll(tela);
+    private void onAlunoClicked(){
+        carregarTela("aluno-view.fxml");
     }
 
     @FXML
-    private void abrirMatricula() {
+    private void onCursoClicked() {
+        carregarTela("curso-view.fxml");
+    }
 
-        System.out.println("Tela de matrícula");
+    @FXML
+    private void onMatriculaClicked()  {
+        carregarTela("matricula-view.fxml");
     }
 }
