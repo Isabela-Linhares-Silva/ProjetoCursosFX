@@ -7,6 +7,7 @@ module com.aula.projetocursosfx {
     requires java.desktop;
 
     opens com.aula.projetocursosfx to javafx.fxml;
+    opens com.aula.projetocursosfx.model.entities to javafx.base;
     exports com.aula.projetocursosfx;
     exports com.aula.projetocursosfx.controller;
     opens com.aula.projetocursosfx.controller to javafx.fxml;
