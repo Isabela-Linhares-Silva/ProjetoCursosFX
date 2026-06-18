@@ -64,24 +64,44 @@ public class ProfessorController {
             alerta.setContentText(e.getMessage());
             alerta.showAndWait();
         }
+        catch (NumberFormatException e) { //quando digitar um id invalido ou id vazio
+
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setTitle("Erro");
+            alerta.setHeaderText(null);
+            alerta.setContentText("Digite um ID válido.");
+            alerta.showAndWait();
+        }
     }
     // ================= ATUALIZAR =================
     @FXML
     private void onAtualizarProfessorClicked() {
 
-        Professor professor = new Professor(
-                Integer.parseInt(idProfessor.getText()),
-                nomeProfessor.getText(),
-                especialidadeProfessor.getText()
-        );
+        try {
 
-        DaoFactory.createProfessorDao().update(professor);
+            Professor professor = new Professor(
+                    Integer.parseInt(idProfessor.getText()),
+                    nomeProfessor.getText(),
+                    especialidadeProfessor.getText()
+            );
 
-        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-        alerta.setTitle("Atualização");
-        alerta.setHeaderText(null);
-        alerta.setContentText("Professor atualizado com sucesso!");
-        alerta.showAndWait();
+            DaoFactory.createProfessorDao().update(professor);
+
+            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+            alerta.setTitle("Atualização");
+            alerta.setHeaderText(null);
+            alerta.setContentText("Professor atualizado com sucesso!");
+            alerta.showAndWait();
+
+        }
+        catch (NumberFormatException e) {
+
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setTitle("Erro");
+            alerta.setHeaderText(null);
+            alerta.setContentText("Digite um ID válido.");
+            alerta.showAndWait();
+        }
     }
 
     // ================= LIMPAR =================

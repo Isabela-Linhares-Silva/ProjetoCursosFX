@@ -10,7 +10,6 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.aula.projetocursosfx.controller.MainController">
 
-    <!-- MENU LATERAL -->
 
     <left>
 
@@ -21,7 +20,6 @@
                 -fx-padding:20;
               ">
 
-            <!-- LOGO -->
 
             <Label text="🎓 AcademiSys"
                    style="
@@ -35,8 +33,6 @@
                     -fx-text-fill:#D6E4FF;
                     -fx-font-size:11px;
                    "/>
-
-            <!-- ESPAÇO -->
 
             <VBox spacing="8"
                   style="-fx-padding:20 0 0 0;">
@@ -82,8 +78,6 @@
                         "/>
 
             </VBox>
-
-            <!-- EMPURRA O SAIR PARA BAIXO -->
 
             <VBox prefHeight="400"/>
 

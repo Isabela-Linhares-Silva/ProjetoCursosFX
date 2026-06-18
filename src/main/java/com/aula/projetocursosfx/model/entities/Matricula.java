@@ -1,6 +1,7 @@
 package com.aula.projetocursosfx.model.entities;
 
-import java.sql.Date;
+import javafx.scene.control.TextField;
+
 import java.time.LocalDate;
 
 public class Matricula {
@@ -16,6 +17,16 @@ public class Matricula {
 
     public Matricula(Integer id, String status, Aluno aluno, Curso curso, Double valor, LocalDate dataPagamento,String statusPagamento){
         this.id = id;
+        this.status = status;
+        this.aluno = aluno;
+        this.curso = curso;
+        this.valor = valor;
+        this.dataPagamento = dataPagamento;
+        this.statusPagamento = statusPagamento;
+    }
+
+    public Matricula(String status, Aluno aluno, Curso curso, Double valor, LocalDate dataPagamento,String statusPagamento)
+    {
         this.status = status;
         this.aluno = aluno;
         this.curso = curso;

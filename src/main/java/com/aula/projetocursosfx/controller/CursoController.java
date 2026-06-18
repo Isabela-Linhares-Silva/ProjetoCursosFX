@@ -36,20 +36,28 @@ public class CursoController implements Initializable {
 
         @FXML
         private void onCadastrarCursoClicked() {
+            try {
+                String nome = nomeCurso.getText();
+                int carga = Integer.parseInt(cargaHorariaCurso.getText());
+                double preco = Double.parseDouble(precoCurso.getText());
+                Professor prof = professores.getValue();
 
-            String nome = nomeCurso.getText();
-            int carga = Integer.parseInt(cargaHorariaCurso.getText());
-            double preco = Double.parseDouble(precoCurso.getText());
-            Professor prof = professores.getValue();
+                Curso c = new Curso(nome, carga, preco, prof);
 
-            Curso c = new Curso(nome, carga, preco, prof);
+                DaoFactory.createCursoDao().insert(c);
 
-            DaoFactory.createCursoDao().insert(c);
+                Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+                alerta.setTitle("Cadastro");
+                alerta.setContentText("Cadastrado com sucesso");
+                alerta.show();
+            } catch (NumberFormatException e) {
+                Alert alerta = new Alert(Alert.AlertType.ERROR);
+                alerta.setTitle("Erro");
+                alerta.setHeaderText(null);
+                alerta.setContentText("Digite novamente");
+                alerta.showAndWait();
+            }
 
-            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-            alerta.setTitle("Cadastro");
-            alerta.setContentText("Cadastrado com sucesso");
-            alerta.show();
 
             nomeCurso.clear();
             cargaHorariaCurso.clear();
@@ -83,26 +91,43 @@ public class CursoController implements Initializable {
                 alerta.setContentText(e.getMessage());
                 alerta.showAndWait();
             }
+            catch (NumberFormatException e) { //quando digitar um id invalido ou id vazio
+
+                Alert alerta = new Alert(Alert.AlertType.ERROR);
+                alerta.setTitle("Erro");
+                alerta.setHeaderText(null);
+                alerta.setContentText("Digite um ID válido.");
+                alerta.showAndWait();
+            }
         }
         // ================= ATUALIZAR =================
         @FXML
         private void onAtualizarCursoClicked() {
+            try {
+                Curso curso = new Curso(
+                        Integer.parseInt(idCurso.getText()),
+                        nomeCurso.getText(),
+                        Integer.parseInt(cargaHorariaCurso.getText()),
+                        Double.parseDouble(precoCurso.getText()),
+                        professores.getValue()
+                );
 
-            Curso curso = new Curso(
-                    Integer.parseInt(idCurso.getText()),
-                    nomeCurso.getText(),
-                    Integer.parseInt(cargaHorariaCurso.getText()),
-                    Double.parseDouble(precoCurso.getText()), // oq é esse parse int
-                    professores.getValue()
-            );
+                DaoFactory.createCursoDao().update(curso);
 
-            DaoFactory.createCursoDao().update(curso);
+                Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+                alerta.setTitle("Atualização");
+                alerta.setHeaderText(null);
+                alerta.setContentText("Curso atualizado com sucesso!");
+                alerta.showAndWait();
+            } catch (NumberFormatException e) {
 
-            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-            alerta.setTitle("Atualização");
-            alerta.setHeaderText(null);
-            alerta.setContentText("Curso atualizado com sucesso!");
-            alerta.showAndWait();
+                Alert alerta = new Alert(Alert.AlertType.ERROR);
+                alerta.setTitle("Erro");
+                alerta.setHeaderText(null);
+                alerta.setContentText("Digite um ID válido.");
+                alerta.showAndWait();
+            }
+
         }
 
         // ================= LIMPAR =================
