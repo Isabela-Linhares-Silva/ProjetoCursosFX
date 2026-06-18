@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -29,33 +28,27 @@
 
                     <Label text="ID" GridPane.columnIndex="0" GridPane.rowIndex="0" />
 
-                    <TextField promptText="Use para buscar" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                    <TextField fx:id="idCurso" promptText="Use para buscar" GridPane.columnIndex="0" GridPane.rowIndex="1" />
 
 
                     <Label text="Nome" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
-                    <TextField promptText=" " GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                    <TextField fx:id="nomeCurso" promptText=" " GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
 
                     <Label text="Carga Horaria" GridPane.columnIndex="2" GridPane.rowIndex="0" />
 
-                    <TextField promptText=" " GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                    <TextField fx:id="cargaHorariaCurso" promptText=" " GridPane.columnIndex="2" GridPane.rowIndex="1" />
 
 
                     <Label text="Preço" GridPane.columnIndex="0" GridPane.rowIndex="2" />
 
-                    <TextField prefWidth="200" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                    <TextField fx:id="precoCurso" prefWidth="200" promptText="0.00" GridPane.columnIndex="0" GridPane.rowIndex="3" />
 
-                    <!-- Curso -->
 
-                    <Label text="Curso" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                    <Label text="Professor" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-                    <ComboBox fx:id="cursos" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-
-                    <!-- Status Pagamento -->
-
-                    <Label text="Status Pagamento" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-
-                    <TextField fx:id="statusPagamentoMatricula" promptText="Pago" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+                    <ComboBox fx:id="professores" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
                     <columnConstraints>
                         <ColumnConstraints />
@@ -76,7 +69,6 @@
 
             </VBox>
 
-            <!-- Botões -->
 
             <HBox spacing="15">
 
@@ -95,23 +87,19 @@
 
                 <Label style="-fx-font-size:16px;                   -fx-font-weight:bold;                   -fx-text-fill:#1E3A8A;" text="Cursos Cadastrados" />
 
-                <TableView fx:id="tableMatricula" prefHeight="300">
+                <TableView prefHeight="300">
 
                     <columns>
 
                         <TableColumn prefWidth="60" text="ID" />
 
-                        <TableColumn prefWidth="120" text="Status" />
+                        <TableColumn prefWidth="120" text="Nome" />
 
-                        <TableColumn prefWidth="150" text="Aluno" />
+                        <TableColumn prefWidth="150" text="Carga Horária" />
 
-                        <TableColumn prefWidth="150" text="Curso" />
+                        <TableColumn prefWidth="100" text="Preço" />
 
-                        <TableColumn prefWidth="100" text="Valor" />
-
-                        <TableColumn prefWidth="120" text="Data Pag." />
-
-                        <TableColumn prefWidth="140" text="Status Pag." />
+                        <TableColumn prefWidth="100" text="Professor" />
 
                     </columns>
 
