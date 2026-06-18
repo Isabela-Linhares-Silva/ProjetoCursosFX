@@ -74,6 +74,13 @@ public class AlunoController {
                 alerta.setHeaderText(null);
                 alerta.setContentText(e.getMessage());
                 alerta.showAndWait();
+            }catch (NumberFormatException e) { //quando digitar um id invalido ou id vazio
+
+                Alert alerta = new Alert(Alert.AlertType.ERROR);
+                alerta.setTitle("Erro");
+                alerta.setHeaderText(null);
+                alerta.setContentText("Digite um ID válido.");
+                alerta.showAndWait();
             }
         }
         // ================= ATUALIZAR =================
@@ -92,6 +99,15 @@ public class AlunoController {
                 alerta.setTitle("Erro");
                 alerta.setHeaderText(null);
                 alerta.setContentText(e.getMessage());
+                alerta.showAndWait();
+                return;
+            }
+            catch (NumberFormatException e) {
+
+                Alert alerta = new Alert(Alert.AlertType.ERROR);
+                alerta.setTitle("Erro");
+                alerta.setHeaderText(null);
+                alerta.setContentText("Digite um ID válido.");
                 alerta.showAndWait();
             }
 
