@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.aula.projetocursosfx.controller.CursoController">
+    <children>
+
+        <VBox layoutX="20" layoutY="20" prefWidth="860" spacing="20">
+
+            <Label style="-fx-font-size:24px;                           -fx-font-weight:bold;                           -fx-text-fill:#1E3A8A;" text="Cadastrar Curso" />
+
+            <VBox spacing="15" style="-fx-background-color:white;                          -fx-background-radius:10;                          -fx-border-color:#D1D5DB;                          -fx-border-radius:10;                          -fx-padding:20;">
+
+                <Label style="-fx-font-size:16px;                               -fx-font-weight:bold;                               -fx-text-fill:#2563EB;" text="Dados do Curso" />
+
+                <GridPane hgap="20" vgap="10">
+
+                    <Label text="ID" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+
+                    <TextField promptText="Use para buscar" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+
+
+                    <Label text="Nome" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                    <TextField promptText=" " GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                    <Label text="Carga Horaria" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+
+                    <TextField promptText=" " GridPane.columnIndex="2" GridPane.rowIndex="1" />
+
+
+                    <Label text="Preço" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+
+                    <TextField prefWidth="200" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+
+                    <!-- Curso -->
+
+                    <Label text="Curso" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                    <ComboBox fx:id="cursos" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+                    <!-- Status Pagamento -->
+
+                    <Label text="Status Pagamento" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+
+                    <TextField fx:id="statusPagamentoMatricula" promptText="Pago" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+
+                    <columnConstraints>
+                        <ColumnConstraints />
+                        <ColumnConstraints />
+                        <ColumnConstraints />
+                    </columnConstraints>
+
+                    <rowConstraints>
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                    </rowConstraints>
+
+                </GridPane>
+
+            </VBox>
+
+            <!-- Botões -->
+
+            <HBox spacing="15">
+
+                <Button onAction="#onCadastrarCursoClicked" style="-fx-background-color:#2563EB;                                -fx-text-fill:white;                                -fx-font-weight:bold;" text="Salvar" />
+
+                <Button onAction="#onAtualizarCursoClicked" style="-fx-background-color:#22C55E;                                -fx-text-fill:white;                                -fx-font-weight:bold;" text="Atualizar" />
+
+                <Button onAction="#onBuscarCursoClicked" style="-fx-background-color:#2563EB;                                -fx-text-fill:white;                                -fx-font-weight:bold;" text="Buscar" />
+
+                <Button onAction="#onLimparClicked" style="-fx-background-color:#64748B;                                -fx-text-fill:white;                                -fx-font-weight:bold;" text="Limpar" />
+
+            </HBox>
+            <!-- Tabela -->
+
+            <VBox spacing="10" style="-fx-background-color:white;              -fx-background-radius:10;              -fx-border-color:#D1D5DB;              -fx-border-radius:10;              -fx-padding:20;">
+
+                <Label style="-fx-font-size:16px;                   -fx-font-weight:bold;                   -fx-text-fill:#1E3A8A;" text="Cursos Cadastrados" />
+
+                <TableView fx:id="tableMatricula" prefHeight="300">
+
+                    <columns>
+
+                        <TableColumn prefWidth="60" text="ID" />
+
+                        <TableColumn prefWidth="120" text="Status" />
+
+                        <TableColumn prefWidth="150" text="Aluno" />
+
+                        <TableColumn prefWidth="150" text="Curso" />
+
+                        <TableColumn prefWidth="100" text="Valor" />
+
+                        <TableColumn prefWidth="120" text="Data Pag." />
+
+                        <TableColumn prefWidth="140" text="Status Pag." />
+
+                    </columns>
+
+                </TableView>
+
+            </VBox>
+        </VBox>
+
+    </children>
+
+
+</AnchorPane>

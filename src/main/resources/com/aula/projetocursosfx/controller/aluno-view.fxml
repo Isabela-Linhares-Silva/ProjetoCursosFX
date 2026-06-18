@@ -56,12 +56,12 @@
 
             <HBox spacing="15">
 
-                <Button style="-fx-background-color:#2563EB;                                -fx-text-fill:white;                                -fx-font-weight:bold;" text="Salvar" />
+                <Button onAction="#onCadastrarAlunoClicked" style="-fx-background-color:#2563EB;                                -fx-text-fill:white;                                -fx-font-weight:bold;" text="Salvar" />
 
-                <Button style="-fx-background-color:#22C55E;                                -fx-text-fill:white;                                -fx-font-weight:bold;" text="Atualizar" />
-                <Button style="-fx-background-color:#2563EB;                                -fx-text-fill:white;                                -fx-font-weight:bold;" text="Buscar" />
+                <Button onAction="#onAtualizarAlunoClicked" style="-fx-background-color:#22C55E;                                -fx-text-fill:white;                                -fx-font-weight:bold;" text="Atualizar" />
+                <Button onAction="#onBuscarAlunoClicked" style="-fx-background-color:#2563EB;                                -fx-text-fill:white;                                -fx-font-weight:bold;" text="Buscar" />
 
-                <Button style="-fx-background-color:#64748B;                                -fx-text-fill:white;                                -fx-font-weight:bold;" text="Limpar" />
+                <Button onAction="#onLimparClicked" style="-fx-background-color:#64748B;                                -fx-text-fill:white;                                -fx-font-weight:bold;" text="Limpar" />
 
             </HBox>
 
