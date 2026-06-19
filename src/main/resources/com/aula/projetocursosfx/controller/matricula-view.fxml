@@ -24,14 +24,10 @@
 
       <VBox layoutX="20" layoutY="20" prefWidth="860" spacing="20">
 
-         <!-- Título -->
-
          <Label text="Cadastrar Matrícula"
                 style="-fx-font-size:24px;
                           -fx-font-weight:bold;
                           -fx-text-fill:#1E3A8A;" />
-
-         <!-- Formulário -->
 
          <VBox spacing="15"
                style="-fx-background-color:white;
@@ -47,8 +43,6 @@
 
             <GridPane hgap="20" vgap="10">
 
-               <!-- ID -->
-
                <Label text="ID"
                       GridPane.columnIndex="0"
                       GridPane.rowIndex="0"/>
@@ -58,18 +52,14 @@
                           GridPane.columnIndex="0"
                           GridPane.rowIndex="1"/>
 
-               <!-- Status -->
-
                <Label text="Status"
                       GridPane.columnIndex="1"
                       GridPane.rowIndex="0"/>
 
-               <TextField fx:id="statusMatricula"
-                          promptText="Ativa"
-                          GridPane.columnIndex="1"
-                          GridPane.rowIndex="1"/>
-
-               <!-- Valor -->
+               <ComboBox fx:id="statusMatricula"
+                         prefWidth="250"
+                         GridPane.columnIndex="1"
+                         GridPane.rowIndex="1"/>
 
                <Label text="Valor"
                       GridPane.columnIndex="2"
@@ -80,8 +70,6 @@
                           GridPane.columnIndex="2"
                           GridPane.rowIndex="1"/>
 
-               <!-- Aluno -->
-
                <Label text="Aluno"
                       GridPane.columnIndex="0"
                       GridPane.rowIndex="2"/>
@@ -90,8 +78,6 @@
                          prefWidth="200"
                          GridPane.columnIndex="0"
                          GridPane.rowIndex="3"/>
-
-               <!-- Curso -->
 
                <Label text="Curso"
                       GridPane.columnIndex="1"
@@ -102,8 +88,6 @@
                          GridPane.columnIndex="1"
                          GridPane.rowIndex="3"/>
 
-               <!-- Data -->
-
                <Label text="Data Pagamento"
                       GridPane.columnIndex="2"
                       GridPane.rowIndex="2"/>
@@ -112,16 +96,14 @@
                            GridPane.columnIndex="2"
                            GridPane.rowIndex="3"/>
 
-               <!-- Status Pagamento -->
-
                <Label text="Status Pagamento"
                       GridPane.columnIndex="0"
                       GridPane.rowIndex="4"/>
 
-               <TextField fx:id="statusPagamentoMatricula"
-                          promptText="Pago"
-                          GridPane.columnIndex="0"
-                          GridPane.rowIndex="5"/>
+               <ComboBox fx:id="statusPagamentoMatricula"
+                         prefWidth="250"
+                         GridPane.columnIndex="0"
+                         GridPane.rowIndex="5"/>
 
                <columnConstraints>
                   <ColumnConstraints />
@@ -141,8 +123,6 @@
             </GridPane>
 
          </VBox>
-
-         <!-- Botões -->
 
          <HBox spacing="15">
 
@@ -171,7 +151,6 @@
                                -fx-font-weight:bold;" />
 
          </HBox>
-         <!-- Tabela -->
 
          <VBox spacing="10"
                style="-fx-background-color:white;

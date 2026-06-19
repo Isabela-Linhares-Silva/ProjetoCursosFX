@@ -18,11 +18,9 @@
 
         <VBox layoutX="20" layoutY="20" prefWidth="860" spacing="20">
 
-            <!-- Título -->
 
             <Label style="-fx-font-size: 24px;                           -fx-font-weight: bold;                           -fx-text-fill: #1E3A8A;" text="Cadastrar Professor" />
 
-            <!-- Formulário -->
 
             <VBox spacing="15" style="-fx-background-color: white;                          -fx-background-radius: 10;                          -fx-border-color: #D1D5DB;                          -fx-border-radius: 10;                          -fx-padding: 20;">
 
@@ -50,8 +48,6 @@
 
             </VBox>
 
-            <!-- Botões -->
-
             <HBox spacing="15">
 
                 <Button onAction="#onCadastrarProfessorClicked" style="-fx-background-color:#2563EB;                                -fx-text-fill:white;                                -fx-font-weight:bold;" text="Cadastrar" />
@@ -62,8 +58,6 @@
                 <Button onAction="#onLimparClicked" style="-fx-background-color:#64748B;                                -fx-text-fill:white;                                -fx-font-weight:bold;" text="Limpar" />
 
             </HBox>
-
-            <!-- Tabela -->
 
             <VBox spacing="10" style="-fx-background-color:white;                          -fx-background-radius:10;                          -fx-border-color:#D1D5DB;                          -fx-border-radius:10;                          -fx-padding:20;">
 
