@@ -20,11 +20,11 @@
 
       <VBox layoutX="20" layoutY="20" prefWidth="860" spacing="20">
 
-         <Label style="-fx-font-size:24px;                           -fx-font-weight:bold;                           -fx-text-fill:#1E3A8A;" text="Cadastrar Matrícula" />
+         <Label style="-fx-font-size:24px;-fx-font-weight:bold;-fx-text-fill:#1E3A8A;" text="Cadastrar Matrícula" />
 
-         <VBox spacing="15" style="-fx-background-color:white;                          -fx-background-radius:10;                          -fx-border-color:#D1D5DB;                          -fx-border-radius:10;                          -fx-padding:20;">
+         <VBox spacing="15" style="-fx-background-color:white;-fx-background-radius:10;-fx-border-color:#D1D5DB;                          -fx-border-radius:10;                          -fx-padding:20;">
 
-            <Label style="-fx-font-size:16px;                               -fx-font-weight:bold;                               -fx-text-fill:#2563EB;" text="Dados da Matrícula" />
+            <Label style="-fx-font-size:16px;-fx-font-weight:bold;-fx-text-fill:#2563EB;" text="Dados da Matrícula" />
 
             <GridPane hgap="20" vgap="10">
 
@@ -77,19 +77,19 @@
 
          <HBox spacing="15">
 
-            <Button onAction="#onCadastrarMatriculaClicked" style="-fx-background-color:#2563EB;                                -fx-text-fill:white;                                -fx-font-weight:bold;" text="Cadastrar" />
+            <Button onAction="#onCadastrarMatriculaClicked" style="-fx-background-color:#2563EB;-fx-text-fill:white;-fx-font-weight:bold;" text="Cadastrar" />
 
-            <Button onAction="#onAtualizarMatriculaClicked" style="-fx-background-color:#22C55E;                                -fx-text-fill:white;                                -fx-font-weight:bold;" text="Atualizar" />
+            <Button onAction="#onAtualizarMatriculaClicked" style="-fx-background-color:#22C55E;-fx-text-fill:white;-fx-font-weight:bold;" text="Atualizar" />
 
-            <Button onAction="#onBuscarMatriculaClicked" style="-fx-background-color:#2563EB;                                -fx-text-fill:white;                                -fx-font-weight:bold;" text="Buscar" />
+            <Button onAction="#onBuscarMatriculaClicked" style="-fx-background-color:#2563EB;-fx-text-fill:white;-fx-font-weight:bold;" text="Buscar" />
 
-            <Button onAction="#onLimparClicked" style="-fx-background-color:#64748B;                                -fx-text-fill:white;                                -fx-font-weight:bold;" text="Limpar" />
+            <Button onAction="#onLimparClicked" style="-fx-background-color:#64748B;-fx-text-fill:white;-fx-font-weight:bold;" text="Limpar" />
 
          </HBox>
 
-         <VBox spacing="10" style="-fx-background-color:white;              -fx-background-radius:10;              -fx-border-color:#D1D5DB;              -fx-border-radius:10;              -fx-padding:20;">
+         <VBox spacing="10" style="-fx-background-color:white;-fx-background-radius:10;-fx-border-color:#D1D5DB;-fx-border-radius:10;-fx-padding:20;">
 
-            <Label style="-fx-font-size:16px;                   -fx-font-weight:bold;                   -fx-text-fill:#1E3A8A;" text="Matrículas Cadastradas" />
+            <Label style="-fx-font-size:16px;-fx-font-weight:bold;-fx-text-fill:#1E3A8A;" text="Matrículas Cadastradas" />
 
             <TableView fx:id="tableMatricula" prefHeight="300">
 

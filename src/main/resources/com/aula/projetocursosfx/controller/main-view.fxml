@@ -6,119 +6,45 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns="http://javafx.com/javafx/21"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.aula.projetocursosfx.controller.MainController">
-
+<BorderPane xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.aula.projetocursosfx.controller.MainController">
 
     <left>
 
-        <VBox spacing="10"
-              prefWidth="220"
-              style="
-                -fx-background-color: linear-gradient(to bottom,#1E3A8A,#2563EB);
-                -fx-padding:20;
-              ">
+        <VBox prefWidth="220" spacing="10" style="-fx-background-color: linear-gradient(to bottom,#1E3A8A,#2563EB);-fx-padding:20;">
 
 
-            <Label text="🎓 AcademiSys"
-                   style="
-                    -fx-text-fill:white;
-                    -fx-font-size:22px;
-                    -fx-font-weight:bold;
-                   "/>
+            <Label style="-fx-text-fill:white; -fx-font-size:22px;-fx-font-weight:bold; " text="🎓 AcademiSys" />
 
-            <Label text="Sistema de Gestão de Cursos"
-                   style="
-                    -fx-text-fill:#D6E4FF;
-                    -fx-font-size:11px;
-                   "/>
+            <Label style="-fx-text-fill:#D6E4FF;-fx-font-size:11px;" text="Sistema de Gestão de Cursos" />
 
-            <VBox spacing="8"
-                  style="-fx-padding:20 0 0 0;">
+            <VBox spacing="8" style="-fx-padding:20 0 0 0;">
 
-                <Button text="👨‍🏫 Professores"
-                        onAction="#onProfessorClicked"
-                        prefWidth="180"
-                        style="
-                            -fx-background-color:transparent;
-                            -fx-text-fill:white;
-                            -fx-font-size:14px;
-                            -fx-alignment:CENTER_LEFT;
-                        "/>
+                <Button onAction="#onProfessorClicked" prefWidth="180" style=" -fx-background-color:transparent; -fx-text-fill:white; -fx-font-size:14px; -fx-alignment:CENTER_LEFT; " text="👨‍🏫 Professores" />
 
-                <Button text="📚 Cursos"
-                        onAction="#onCursoClicked"
-                        prefWidth="180"
-                        style="
-                            -fx-background-color:transparent;
-                            -fx-text-fill:white;
-                            -fx-font-size:14px;
-                            -fx-alignment:CENTER_LEFT;
-                        "/>
+                <Button onAction="#onCursoClicked" prefWidth="180" style=" -fx-background-color:transparent; -fx-text-fill:white; -fx-font-size:14px; -fx-alignment:CENTER_LEFT;  " text="📚 Cursos" />
 
-                <Button text="🎓 Alunos"
-                        onAction="#onAlunoClicked"
-                        prefWidth="180"
-                        style="
-                            -fx-background-color:transparent;
-                            -fx-text-fill:white;
-                            -fx-font-size:14px;
-                            -fx-alignment:CENTER_LEFT;
-                        "/>
+                <Button onAction="#onAlunoClicked" prefWidth="180" style=" -fx-background-color:transparent; -fx-text-fill:white; -fx-font-size:14px; -fx-alignment:CENTER_LEFT; " text="🎓 Alunos" />
 
-                <Button text="📝 Matrículas"
-                        onAction="#onMatriculaClicked"
-                        prefWidth="180"
-                        style="
-                            -fx-background-color:transparent;
-                            -fx-text-fill:white;
-                            -fx-font-size:14px;
-                            -fx-alignment:CENTER_LEFT;
-                        "/>
+                <Button onAction="#onMatriculaClicked" prefWidth="180" style=" -fx-background-color:transparent; -fx-text-fill:white; -fx-font-size:14px; -fx-alignment:CENTER_LEFT; " text="📝 Matrículas" />
 
             </VBox>
 
-            <VBox prefHeight="400"/>
-
-            <Button text="🚪 Sair"
-                    prefWidth="180"
-                    style="
-                        -fx-background-color:transparent;
-                        -fx-text-fill:white;
-                        -fx-font-size:14px;
-                        -fx-alignment:CENTER_LEFT;
-                    "/>
+            <VBox prefHeight="400" />
 
         </VBox>
 
     </left>
 
-    <!-- ÁREA CENTRAL -->
-
     <center>
 
-        <AnchorPane fx:id="contentPane"
-                    style="-fx-background-color:#F5F7FA;">
+        <AnchorPane fx:id="contentPane" style="-fx-background-color:#F5F7FA;">
 
             <children>
 
-                <VBox layoutX="50"
-                      layoutY="50"
-                      spacing="15">
+                <VBox layoutX="50" layoutY="50" spacing="15">
 
-                    <Label text="Bem-vindo ao AcademiSys"
-                           style="
-                            -fx-font-size:28px;
-                            -fx-font-weight:bold;
-                            -fx-text-fill:#1E3A8A;
-                           "/>
-
-                    <Label text="Selecione uma opção no menu lateral."
-                           style="
-                            -fx-font-size:14px;
-                            -fx-text-fill:#64748B;
-                           "/>
+                    <Label style="-fx-font-size:28px;-fx-font-weight:bold;-fx-text-fill:#1E3A8A;" text="Bem-vindo ao AcademiSys" />
+                    <Label style="-fx-font-size:14px;-fx-text-fill:#64748B;" text="Selecione uma opção no menu lateral." />
 
                 </VBox>
 

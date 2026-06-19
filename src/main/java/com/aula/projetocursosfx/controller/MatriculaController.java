@@ -81,7 +81,7 @@ public class MatriculaController {
             matricula.setStatusPagamento(statusPagamento);
 
             DaoFactory.createMatriculaDao().insert(matricula);
-            carregarTabela();
+            atualizarTabela();
 
             Alert alerta = new Alert(Alert.AlertType.INFORMATION);
             alerta.setTitle("Cadastro");
@@ -154,6 +154,7 @@ public class MatriculaController {
             );
 
             DaoFactory.createMatriculaDao().update(matricula);
+            atualizarTabela();
 
             Alert alerta = new Alert(Alert.AlertType.INFORMATION);
             alerta.setTitle("Atualização");
@@ -204,8 +205,7 @@ public class MatriculaController {
 
         statusPagamentoMatricula.getItems().addAll(
                 "Pago",
-                "Pendente",
-                "Atrasado"
+                "Pendente"
         );
 
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -216,10 +216,10 @@ public class MatriculaController {
         colDataPagamento.setCellValueFactory(new PropertyValueFactory<>("dataPagamento"));
         colStatusPagamento.setCellValueFactory(new PropertyValueFactory<>("statusPagamento"));
 
-        carregarTabela();
+        atualizarTabela();
     }
 
-    private void carregarTabela() {
+    private void atualizarTabela() {
 
         tableMatricula.getItems().clear();
 
