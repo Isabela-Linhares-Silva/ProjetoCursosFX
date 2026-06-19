@@ -38,25 +38,6 @@ public class AlunoController {
         @FXML
         private TableColumn<Aluno, String> colEmail;
 
-        @FXML
-        public void initialize() {
-
-            colId.setCellValueFactory(new PropertyValueFactory<>("id"));
-            colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
-            colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
-
-            atualizarTabela();
-        }
-
-        private void atualizarTabela() {
-
-            ObservableList<Aluno> lista =
-                    FXCollections.observableArrayList(
-                            DaoFactory.createAlunoDao().findAll());
-
-            tableAluno.setItems(lista);
-        }
-
         // ================= CADASTRAR =================
 
         @FXML
@@ -168,6 +149,25 @@ public class AlunoController {
             idAluno.clear();
             nomeAluno.clear();
             emailAluno.clear();
+        }
+
+        @FXML
+        public void initialize() {
+
+            colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+            colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+            colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+
+            atualizarTabela();
+        }
+
+        private void atualizarTabela() {
+
+            ObservableList<Aluno> lista =
+                    FXCollections.observableArrayList(
+                            DaoFactory.createAlunoDao().findAll());
+
+            tableAluno.setItems(lista);
         }
     }
 

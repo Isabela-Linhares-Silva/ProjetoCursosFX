@@ -50,43 +50,6 @@ public class CursoController implements Initializable {
         @FXML
         private TableColumn<Curso, String> colProfessor;
 
-        @Override
-        public void initialize(URL location, ResourceBundle resources) {
-
-            professores.getItems().addAll(
-                    DaoFactory.createProfessorDao().findAll()
-            );
-
-            colId.setCellValueFactory(
-                    new PropertyValueFactory<>("id"));
-
-            colNome.setCellValueFactory(
-                    new PropertyValueFactory<>("nome"));
-
-            colCargaHoraria.setCellValueFactory(
-                    new PropertyValueFactory<>("cargaHoraria"));
-
-            colPreco.setCellValueFactory(
-                    new PropertyValueFactory<>("preco"));
-
-            colProfessor.setCellValueFactory(cellData ->
-                    new SimpleStringProperty(
-                            cellData.getValue()
-                                    .getProfessor()
-                                    .getNome()
-                    )
-            );
-
-            atualizarTabela();
-        }
-
-        private void atualizarTabela() {
-
-            tableCurso.getItems().setAll(
-                    DaoFactory.createCursoDao().findAll()
-            );
-        }
-
         // ================= CADASTRAR =================
 
         @FXML
@@ -100,6 +63,7 @@ public class CursoController implements Initializable {
                 Curso c = new Curso(nome, carga, preco, prof);
 
                 DaoFactory.createCursoDao().insert(c);
+                atualizarTabela();
 
                 Alert alerta = new Alert(Alert.AlertType.INFORMATION);
                 alerta.setTitle("Cadastro");
@@ -168,6 +132,7 @@ public class CursoController implements Initializable {
                 );
 
                 DaoFactory.createCursoDao().update(curso);
+                atualizarTabela();
 
                 Alert alerta = new Alert(Alert.AlertType.INFORMATION);
                 alerta.setTitle("Atualização");
@@ -195,6 +160,43 @@ public class CursoController implements Initializable {
             cargaHorariaCurso.clear();
             precoCurso.clear();
             professores.setValue(null);
+        }
+
+        @Override
+        public void initialize(URL location, ResourceBundle resources) {
+
+            professores.getItems().addAll(
+                    DaoFactory.createProfessorDao().findAll()
+            );
+
+            colId.setCellValueFactory(
+                    new PropertyValueFactory<>("id"));
+
+            colNome.setCellValueFactory(
+                    new PropertyValueFactory<>("nome"));
+
+            colCargaHoraria.setCellValueFactory(
+                    new PropertyValueFactory<>("cargaHoraria"));
+
+            colPreco.setCellValueFactory(
+                    new PropertyValueFactory<>("preco"));
+
+            colProfessor.setCellValueFactory(cellData ->
+                    new SimpleStringProperty(
+                            cellData.getValue()
+                                    .getProfessor()
+                                    .getNome()
+                    )
+            );
+
+            atualizarTabela();
+        }
+
+        private void atualizarTabela() {
+
+            tableCurso.getItems().setAll(
+                    DaoFactory.createCursoDao().findAll()
+            );
         }
 
     }

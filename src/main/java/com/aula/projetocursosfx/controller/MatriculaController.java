@@ -9,10 +9,8 @@ import com.aula.projetocursosfx.model.entities.Curso;
 import com.aula.projetocursosfx.model.entities.Matricula;
 import com.aula.projetocursosfx.model.entities.Professor;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.time.LocalDate;
 
@@ -37,6 +35,30 @@ public class MatriculaController {
 
     @FXML
     private ComboBox<Curso> cursos;
+
+    @FXML
+    private TableView<Matricula> tableMatricula;
+
+    @FXML
+    private TableColumn<Matricula, Integer> colId;
+
+    @FXML
+    private TableColumn<Matricula, String> colStatus;
+
+    @FXML
+    private TableColumn<Matricula, Aluno> colAluno;
+
+    @FXML
+    private TableColumn<Matricula, Curso> colCurso;
+
+    @FXML
+    private TableColumn<Matricula, Double> colValor;
+
+    @FXML
+    private TableColumn<Matricula, LocalDate> colDataPagamento;
+
+    @FXML
+    private TableColumn<Matricula, String> colStatusPagamento;
     // ================= CADASTRAR =================
 
     @FXML
@@ -59,6 +81,7 @@ public class MatriculaController {
             matricula.setStatusPagamento(statusPagamento);
 
             DaoFactory.createMatriculaDao().insert(matricula);
+            carregarTabela();
 
             Alert alerta = new Alert(Alert.AlertType.INFORMATION);
             alerta.setTitle("Cadastro");
@@ -183,6 +206,25 @@ public class MatriculaController {
                 "Pago",
                 "Pendente",
                 "Atrasado"
+        );
+
+        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+        colAluno.setCellValueFactory(new PropertyValueFactory<>("aluno"));
+        colCurso.setCellValueFactory(new PropertyValueFactory<>("curso"));
+        colValor.setCellValueFactory(new PropertyValueFactory<>("valor"));
+        colDataPagamento.setCellValueFactory(new PropertyValueFactory<>("dataPagamento"));
+        colStatusPagamento.setCellValueFactory(new PropertyValueFactory<>("statusPagamento"));
+
+        carregarTabela();
+    }
+
+    private void carregarTabela() {
+
+        tableMatricula.getItems().clear();
+
+        tableMatricula.getItems().addAll(
+                DaoFactory.createMatriculaDao().findAll()
         );
     }
 

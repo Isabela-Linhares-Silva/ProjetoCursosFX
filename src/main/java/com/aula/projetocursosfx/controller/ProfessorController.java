@@ -37,27 +37,6 @@ public class ProfessorController {
     @FXML
     private TableColumn<Professor, String> colEspecialidade;
 
-    @FXML
-    public void initialize() {
-
-        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
-        colEspecialidade.setCellValueFactory(new PropertyValueFactory<>("especialidade"));
-
-        atualizarTabela();
-    }
-
-    private void atualizarTabela() {
-
-        List<Professor> lista =
-                DaoFactory.createProfessorDao().findAll();
-
-        ObservableList<Professor> obsList =
-                FXCollections.observableArrayList(lista);
-
-        tableProfessor.setItems(obsList);
-    }
-
     // ================= CADASTRAR =================
 
     @FXML
@@ -69,6 +48,7 @@ public class ProfessorController {
         );
 
         DaoFactory.createProfessorDao().insert(professor);
+        atualizarTabela();
 
         Alert alerta = new Alert(Alert.AlertType.INFORMATION);
         alerta.setTitle("Cadastro");
@@ -126,6 +106,7 @@ public class ProfessorController {
             );
 
             DaoFactory.createProfessorDao().update(professor);
+            atualizarTabela();
 
             Alert alerta = new Alert(Alert.AlertType.INFORMATION);
             alerta.setTitle("Atualização");
@@ -153,4 +134,27 @@ public class ProfessorController {
         nomeProfessor.clear();
         especialidadeProfessor.clear();
     }
+
+    @FXML
+    public void initialize() {
+
+        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        colEspecialidade.setCellValueFactory(new PropertyValueFactory<>("especialidade"));
+
+        atualizarTabela();
+    }
+
+    private void atualizarTabela() {
+
+        List<Professor> lista =
+                DaoFactory.createProfessorDao().findAll();
+
+        ObservableList<Professor> obsList =
+                FXCollections.observableArrayList(lista);
+
+        tableProfessor.setItems(obsList);
+    }
+
+
 }

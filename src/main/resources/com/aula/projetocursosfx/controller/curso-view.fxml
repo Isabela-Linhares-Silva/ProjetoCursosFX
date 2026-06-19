@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.aula.projetocursosfx.controller.CursoController">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.aula.projetocursosfx.controller.CursoController">
     <children>
 
         <VBox layoutX="20" layoutY="20" prefWidth="860" spacing="20">
@@ -72,7 +72,7 @@
 
             <HBox spacing="15">
 
-                <Button onAction="#onCadastrarCursoClicked" style="-fx-background-color:#2563EB;                                -fx-text-fill:white;                                -fx-font-weight:bold;" text="Salvar" />
+                <Button onAction="#onCadastrarCursoClicked" style="-fx-background-color:#2563EB;                                -fx-text-fill:white;                                -fx-font-weight:bold;" text="Cadastrar" />
 
                 <Button onAction="#onAtualizarCursoClicked" style="-fx-background-color:#22C55E;                                -fx-text-fill:white;                                -fx-font-weight:bold;" text="Atualizar" />
 
@@ -91,11 +91,11 @@
 
                     <columns>
 
-                        <TableColumn fx:id="colId" text="ID"/>
-                        <TableColumn fx:id="colNome" text="Nome"/>
-                        <TableColumn fx:id="colCargaHoraria" text="Carga Horária"/>
-                        <TableColumn fx:id="colPreco" text="Preço"/>
-                        <TableColumn fx:id="colProfessor" text="Professor"/>
+                        <TableColumn fx:id="colId" text="ID" />
+                        <TableColumn fx:id="colNome" text="Nome" />
+                        <TableColumn fx:id="colCargaHoraria" text="Carga Horária" />
+                        <TableColumn fx:id="colPreco" text="Preço" />
+                        <TableColumn fx:id="colProfessor" text="Professor" />
 
                     </columns>
 
