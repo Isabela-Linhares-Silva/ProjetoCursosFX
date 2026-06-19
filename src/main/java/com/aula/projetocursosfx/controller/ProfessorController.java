@@ -3,9 +3,16 @@ package com.aula.projetocursosfx.controller;
 import com.aula.projetocursosfx.exceptions.ProfessorNaoEncontradoException;
 import com.aula.projetocursosfx.model.dao.DaoFactory;
 import com.aula.projetocursosfx.model.entities.Professor;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.util.List;
 
 public class ProfessorController {
 
@@ -17,6 +24,39 @@ public class ProfessorController {
 
     @FXML
     private TextField especialidadeProfessor;
+
+    @FXML
+    private TableView<Professor> tableProfessor;
+
+    @FXML
+    private TableColumn<Professor, Integer> colId;
+
+    @FXML
+    private TableColumn<Professor, String> colNome;
+
+    @FXML
+    private TableColumn<Professor, String> colEspecialidade;
+
+    @FXML
+    public void initialize() {
+
+        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        colEspecialidade.setCellValueFactory(new PropertyValueFactory<>("especialidade"));
+
+        atualizarTabela();
+    }
+
+    private void atualizarTabela() {
+
+        List<Professor> lista =
+                DaoFactory.createProfessorDao().findAll();
+
+        ObservableList<Professor> obsList =
+                FXCollections.observableArrayList(lista);
+
+        tableProfessor.setItems(obsList);
+    }
 
     // ================= CADASTRAR =================
 

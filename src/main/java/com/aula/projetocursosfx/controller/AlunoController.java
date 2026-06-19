@@ -7,6 +7,12 @@ import com.aula.projetocursosfx.model.entities.Aluno;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+
 
 public class AlunoController {
 
@@ -20,6 +26,37 @@ public class AlunoController {
         @FXML
         private TextField emailAluno;
 
+        @FXML
+        private TableView<Aluno> tableAluno;
+
+        @FXML
+        private TableColumn<Aluno, Integer> colId;
+
+        @FXML
+        private TableColumn<Aluno, String> colNome;
+
+        @FXML
+        private TableColumn<Aluno, String> colEmail;
+
+        @FXML
+        public void initialize() {
+
+            colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+            colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+            colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+
+            atualizarTabela();
+        }
+
+        private void atualizarTabela() {
+
+            ObservableList<Aluno> lista =
+                    FXCollections.observableArrayList(
+                            DaoFactory.createAlunoDao().findAll());
+
+            tableAluno.setItems(lista);
+        }
+
         // ================= CADASTRAR =================
 
         @FXML
@@ -31,6 +68,7 @@ public class AlunoController {
                 );
 
                 DaoFactory.createAlunoDao().insert(aluno);
+                atualizarTabela();
 
                 Alert alerta = new Alert(Alert.AlertType.INFORMATION);
                 alerta.setTitle("Cadastro");
@@ -62,6 +100,7 @@ public class AlunoController {
 
                 Aluno aluno =
                         DaoFactory.createAlunoDao().findByID(id);
+                atualizarTabela();
 
                 nomeAluno.setText(aluno.getNome());
                 emailAluno.setText(aluno.getEmail());
@@ -94,6 +133,7 @@ public class AlunoController {
                 );
 
                 DaoFactory.createAlunoDao().update(aluno);
+                atualizarTabela();
             } catch (EmailInvalidoException e) {
                 Alert alerta = new Alert(Alert.AlertType.ERROR);
                 alerta.setTitle("Erro");
@@ -109,6 +149,7 @@ public class AlunoController {
                 alerta.setHeaderText(null);
                 alerta.setContentText("Digite um ID válido.");
                 alerta.showAndWait();
+                return;
             }
 
 

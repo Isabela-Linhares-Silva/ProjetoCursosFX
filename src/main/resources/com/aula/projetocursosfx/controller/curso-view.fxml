@@ -87,19 +87,15 @@
 
                 <Label style="-fx-font-size:16px;                   -fx-font-weight:bold;                   -fx-text-fill:#1E3A8A;" text="Cursos Cadastrados" />
 
-                <TableView prefHeight="300">
+                <TableView fx:id="tableCurso" prefHeight="300">
 
                     <columns>
 
-                        <TableColumn prefWidth="60" text="ID" />
-
-                        <TableColumn prefWidth="120" text="Nome" />
-
-                        <TableColumn prefWidth="150" text="Carga Horária" />
-
-                        <TableColumn prefWidth="100" text="Preço" />
-
-                        <TableColumn prefWidth="100" text="Professor" />
+                        <TableColumn fx:id="colId" text="ID"/>
+                        <TableColumn fx:id="colNome" text="Nome"/>
+                        <TableColumn fx:id="colCargaHoraria" text="Carga Horária"/>
+                        <TableColumn fx:id="colPreco" text="Preço"/>
+                        <TableColumn fx:id="colProfessor" text="Professor"/>
 
                     </columns>
 
