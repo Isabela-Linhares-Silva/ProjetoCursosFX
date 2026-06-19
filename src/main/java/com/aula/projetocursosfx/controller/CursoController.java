@@ -5,11 +5,11 @@ import com.aula.projetocursosfx.exceptions.ProfessorNaoEncontradoException;
 import com.aula.projetocursosfx.model.dao.DaoFactory;
 import com.aula.projetocursosfx.model.entities.Curso;
 import com.aula.projetocursosfx.model.entities.Professor;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -31,6 +31,61 @@ public class CursoController implements Initializable {
 
         @FXML
         private ComboBox<Professor> professores;
+
+        @FXML
+        private TableView<Curso> tableCurso;
+
+        @FXML
+        private TableColumn<Curso, Integer> colId;
+
+        @FXML
+        private TableColumn<Curso, String> colNome;
+
+        @FXML
+        private TableColumn<Curso, Integer> colCargaHoraria;
+
+        @FXML
+        private TableColumn<Curso, Double> colPreco;
+
+        @FXML
+        private TableColumn<Curso, String> colProfessor;
+
+        @Override
+        public void initialize(URL location, ResourceBundle resources) {
+
+            professores.getItems().addAll(
+                    DaoFactory.createProfessorDao().findAll()
+            );
+
+            colId.setCellValueFactory(
+                    new PropertyValueFactory<>("id"));
+
+            colNome.setCellValueFactory(
+                    new PropertyValueFactory<>("nome"));
+
+            colCargaHoraria.setCellValueFactory(
+                    new PropertyValueFactory<>("cargaHoraria"));
+
+            colPreco.setCellValueFactory(
+                    new PropertyValueFactory<>("preco"));
+
+            colProfessor.setCellValueFactory(cellData ->
+                    new SimpleStringProperty(
+                            cellData.getValue()
+                                    .getProfessor()
+                                    .getNome()
+                    )
+            );
+
+            atualizarTabela();
+        }
+
+        private void atualizarTabela() {
+
+            tableCurso.getItems().setAll(
+                    DaoFactory.createCursoDao().findAll()
+            );
+        }
 
         // ================= CADASTRAR =================
 
@@ -142,13 +197,6 @@ public class CursoController implements Initializable {
             professores.setValue(null);
         }
 
-        @Override
-        public void initialize(URL location, ResourceBundle resources) {
-
-            professores.getItems().addAll(
-                    DaoFactory.createProfessorDao().findAll()
-            );
-        }
     }
 
 
