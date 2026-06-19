@@ -21,7 +21,7 @@ public class MatriculaController {
     private TextField idMatricula;
 
     @FXML
-    private TextField statusMatricula;
+    private ComboBox<String> statusMatricula;
 
     @FXML
     private TextField valorMatricula;
@@ -30,7 +30,7 @@ public class MatriculaController {
     private DatePicker dataPagamentoMatricula;
 
     @FXML
-    private TextField statusPagamentoMatricula;
+    private ComboBox<String> statusPagamentoMatricula;
 
     @FXML
     private ComboBox<Aluno> alunos;
@@ -43,7 +43,7 @@ public class MatriculaController {
     private void onCadastrarMatriculaClicked() {
 
         try{
-            String status = statusMatricula.getText();
+            String status = statusMatricula.getValue();
             Double valor = Double.parseDouble(valorMatricula.getText());
             LocalDate data = dataPagamentoMatricula.getValue();
             Aluno aluno = alunos.getValue();
@@ -73,10 +73,10 @@ public class MatriculaController {
             alerta.showAndWait();
             return;
         }
-        statusMatricula.clear();
+        statusMatricula.setValue(null);
         valorMatricula.clear();
         dataPagamentoMatricula.setValue(null);
-        statusPagamentoMatricula.clear();
+        statusPagamentoMatricula.setValue(null);
         alunos.setValue(null);
         cursos.setValue(null);
     }
@@ -91,10 +91,10 @@ public class MatriculaController {
 
             Matricula matricula = DaoFactory.createMatriculaDao().findByID(id);
 
-            statusMatricula.setText(matricula.getStatus());
+            statusMatricula.setValue(matricula.getStatus());
             valorMatricula.setText(String.valueOf(matricula.getValor()));
             dataPagamentoMatricula.setValue(matricula.getDataPagamento());
-            statusPagamentoMatricula.setText(matricula.getStatusPagamento());
+            statusPagamentoMatricula.setValue(matricula.getStatusPagamento());
             alunos.setValue(matricula.getAluno());
             cursos.setValue(matricula.getCurso());
 
@@ -122,12 +122,12 @@ public class MatriculaController {
         try{
             Matricula matricula = new Matricula(
                     Integer.parseInt(idMatricula.getText()),
-                    statusMatricula.getText(),
+                    statusMatricula.getValue(),
                     alunos.getValue(),
                     cursos.getValue(),
                     Double.parseDouble(valorMatricula.getText()),
                     dataPagamentoMatricula.getValue(),
-                    statusPagamentoMatricula.getText()
+                    statusPagamentoMatricula.getValue()
             );
 
             DaoFactory.createMatriculaDao().update(matricula);
@@ -154,10 +154,10 @@ public class MatriculaController {
     @FXML
     private void onLimparClicked() {
         idMatricula.clear();
-        statusMatricula.clear();
+        statusMatricula.setValue(null);
         valorMatricula.clear();
         dataPagamentoMatricula.setValue(null);
-        statusPagamentoMatricula.clear();
+        statusPagamentoMatricula.setValue(null);
         alunos.setValue(null);
         cursos.setValue(null);
     }
@@ -171,6 +171,18 @@ public class MatriculaController {
 
         cursos.getItems().addAll(
                 DaoFactory.createCursoDao().findAll()
+        );
+
+        statusMatricula.getItems().addAll(
+                "Ativa",
+                "Inativa",
+                "Cancelada"
+        );
+
+        statusPagamentoMatricula.getItems().addAll(
+                "Pago",
+                "Pendente",
+                "Atrasado"
         );
     }
 

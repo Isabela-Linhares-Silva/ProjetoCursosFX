@@ -4,6 +4,8 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -12,98 +14,47 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TableColumn?>
-<AnchorPane prefHeight="600.0" prefWidth="900.0"
-            style="-fx-background-color: #F5F7FA;"
-            xmlns="http://javafx.com/javafx/25"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.aula.projetocursosfx.controller.MatriculaController">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #F5F7FA;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.aula.projetocursosfx.controller.MatriculaController">
 
    <children>
 
       <VBox layoutX="20" layoutY="20" prefWidth="860" spacing="20">
 
-         <Label text="Cadastrar Matrícula"
-                style="-fx-font-size:24px;
-                          -fx-font-weight:bold;
-                          -fx-text-fill:#1E3A8A;" />
+         <Label style="-fx-font-size:24px;                           -fx-font-weight:bold;                           -fx-text-fill:#1E3A8A;" text="Cadastrar Matrícula" />
 
-         <VBox spacing="15"
-               style="-fx-background-color:white;
-                         -fx-background-radius:10;
-                         -fx-border-color:#D1D5DB;
-                         -fx-border-radius:10;
-                         -fx-padding:20;">
+         <VBox spacing="15" style="-fx-background-color:white;                          -fx-background-radius:10;                          -fx-border-color:#D1D5DB;                          -fx-border-radius:10;                          -fx-padding:20;">
 
-            <Label text="Dados da Matrícula"
-                   style="-fx-font-size:16px;
-                              -fx-font-weight:bold;
-                              -fx-text-fill:#2563EB;" />
+            <Label style="-fx-font-size:16px;                               -fx-font-weight:bold;                               -fx-text-fill:#2563EB;" text="Dados da Matrícula" />
 
             <GridPane hgap="20" vgap="10">
 
-               <Label text="ID"
-                      GridPane.columnIndex="0"
-                      GridPane.rowIndex="0"/>
+               <Label text="ID" GridPane.columnIndex="0" GridPane.rowIndex="0" />
 
-               <TextField fx:id="idMatricula"
-                          promptText="Use para buscar"
-                          GridPane.columnIndex="0"
-                          GridPane.rowIndex="1"/>
+               <TextField fx:id="idMatricula" promptText="Use para buscar" GridPane.columnIndex="0" GridPane.rowIndex="1" />
 
-               <Label text="Status"
-                      GridPane.columnIndex="1"
-                      GridPane.rowIndex="0"/>
+               <Label text="Status" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
-               <ComboBox fx:id="statusMatricula"
-                         prefWidth="250"
-                         GridPane.columnIndex="1"
-                         GridPane.rowIndex="1"/>
+               <ComboBox fx:id="statusMatricula" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-               <Label text="Valor"
-                      GridPane.columnIndex="2"
-                      GridPane.rowIndex="0"/>
+               <Label text="Valor" GridPane.columnIndex="2" GridPane.rowIndex="0" />
 
-               <TextField fx:id="valorMatricula"
-                          promptText="0.00"
-                          GridPane.columnIndex="2"
-                          GridPane.rowIndex="1"/>
+               <TextField fx:id="valorMatricula" promptText="0.00" GridPane.columnIndex="2" GridPane.rowIndex="1" />
 
-               <Label text="Aluno"
-                      GridPane.columnIndex="0"
-                      GridPane.rowIndex="2"/>
+               <Label text="Aluno" GridPane.columnIndex="0" GridPane.rowIndex="2" />
 
-               <ComboBox fx:id="alunos"
-                         prefWidth="200"
-                         GridPane.columnIndex="0"
-                         GridPane.rowIndex="3"/>
+               <ComboBox fx:id="alunos" prefHeight="26.0" prefWidth="250.0" GridPane.columnIndex="0" GridPane.rowIndex="3" />
 
-               <Label text="Curso"
-                      GridPane.columnIndex="1"
-                      GridPane.rowIndex="2"/>
+               <Label text="Curso" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-               <ComboBox fx:id="cursos"
-                         prefWidth="250"
-                         GridPane.columnIndex="1"
-                         GridPane.rowIndex="3"/>
+               <ComboBox fx:id="cursos" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
-               <Label text="Data Pagamento"
-                      GridPane.columnIndex="2"
-                      GridPane.rowIndex="2"/>
+               <Label text="Data Pagamento" GridPane.columnIndex="2" GridPane.rowIndex="2" />
 
-               <DatePicker fx:id="dataPagamentoMatricula"
-                           GridPane.columnIndex="2"
-                           GridPane.rowIndex="3"/>
+               <DatePicker fx:id="dataPagamentoMatricula" GridPane.columnIndex="2" GridPane.rowIndex="3" />
 
-               <Label text="Status Pagamento"
-                      GridPane.columnIndex="0"
-                      GridPane.rowIndex="4"/>
+               <Label text="Status Pagamento" GridPane.columnIndex="0" GridPane.rowIndex="4" />
 
-               <ComboBox fx:id="statusPagamentoMatricula"
-                         prefWidth="250"
-                         GridPane.columnIndex="0"
-                         GridPane.rowIndex="5"/>
+               <ComboBox fx:id="statusPagamentoMatricula" prefWidth="250" GridPane.columnIndex="0" GridPane.rowIndex="5" />
 
                <columnConstraints>
                   <ColumnConstraints />
@@ -126,43 +77,19 @@
 
          <HBox spacing="15">
 
-            <Button text="Salvar"
-                    onAction="#onCadastrarMatriculaClicked"
-                    style="-fx-background-color:#2563EB;
-                               -fx-text-fill:white;
-                               -fx-font-weight:bold;" />
+            <Button onAction="#onCadastrarMatriculaClicked" style="-fx-background-color:#2563EB;                                -fx-text-fill:white;                                -fx-font-weight:bold;" text="Salvar" />
 
-            <Button text="Atualizar"
-                    onAction="#onAtualizarMatriculaClicked"
-                    style="-fx-background-color:#22C55E;
-                               -fx-text-fill:white;
-                               -fx-font-weight:bold;" />
+            <Button onAction="#onAtualizarMatriculaClicked" style="-fx-background-color:#22C55E;                                -fx-text-fill:white;                                -fx-font-weight:bold;" text="Atualizar" />
 
-            <Button text="Buscar"
-                    onAction="#onBuscarMatriculaClicked"
-                    style="-fx-background-color:#2563EB;
-                               -fx-text-fill:white;
-                               -fx-font-weight:bold;" />
+            <Button onAction="#onBuscarMatriculaClicked" style="-fx-background-color:#2563EB;                                -fx-text-fill:white;                                -fx-font-weight:bold;" text="Buscar" />
 
-            <Button text="Limpar"
-                    onAction="#onLimparClicked"
-                    style="-fx-background-color:#64748B;
-                               -fx-text-fill:white;
-                               -fx-font-weight:bold;" />
+            <Button onAction="#onLimparClicked" style="-fx-background-color:#64748B;                                -fx-text-fill:white;                                -fx-font-weight:bold;" text="Limpar" />
 
          </HBox>
 
-         <VBox spacing="10"
-               style="-fx-background-color:white;
-             -fx-background-radius:10;
-             -fx-border-color:#D1D5DB;
-             -fx-border-radius:10;
-             -fx-padding:20;">
+         <VBox spacing="10" style="-fx-background-color:white;              -fx-background-radius:10;              -fx-border-color:#D1D5DB;              -fx-border-radius:10;              -fx-padding:20;">
 
-            <Label text="Matrículas Cadastradas"
-                   style="-fx-font-size:16px;
-                  -fx-font-weight:bold;
-                  -fx-text-fill:#1E3A8A;" />
+            <Label style="-fx-font-size:16px;                   -fx-font-weight:bold;                   -fx-text-fill:#1E3A8A;" text="Matrículas Cadastradas" />
 
             <TableView fx:id="tableMatricula" prefHeight="300">
 
