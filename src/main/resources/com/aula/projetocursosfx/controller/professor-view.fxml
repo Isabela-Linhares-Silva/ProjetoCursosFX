@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #F5F7FA;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.aula.projetocursosfx.controller.ProfessorController">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #F5F7FA;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.aula.projetocursosfx.controller.ProfessorController">
 
     <children>
 
@@ -30,23 +30,12 @@
 
                 <GridPane hgap="20" vgap="10">
 
-                    <!-- ID -->
+                    <TextField fx:id="idProfessor" prefWidth="120" promptText="Use para buscar" GridPane.columnIndex="0" GridPane.rowIndex="1" />
 
-                    <Label text="ID" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                    <TextField fx:id="nomeProfessor" prefWidth="350" promptText="Nome" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-                    <TextField prefWidth="120" promptText="Use para buscar" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                    <TextField fx:id="especialidadeProfessor" prefWidth="250" promptText="Especialidade" GridPane.columnIndex="2" GridPane.rowIndex="1" />
 
-                    <!-- Nome -->
-
-                    <Label text="Nome" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-
-                    <TextField fx:id="txtNome" prefWidth="350" promptText="Nome" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-
-                    <!-- Especialidade -->
-
-                    <Label text="Especialidade" GridPane.columnIndex="2" GridPane.rowIndex="0" />
-
-                    <TextField fx:id="txtEspecialidade" prefWidth="250" promptText="Especialidade" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                <columnConstraints>
                   <ColumnConstraints />
                   <ColumnConstraints />
@@ -65,12 +54,12 @@
 
             <HBox spacing="15">
 
-                <Button style="-fx-background-color:#2563EB;                                -fx-text-fill:white;                                -fx-font-weight:bold;" text="Salvar" />
+                <Button onAction="#onCadastrarProfessorClicked" style="-fx-background-color:#2563EB;                                -fx-text-fill:white;                                -fx-font-weight:bold;" text="Cadastrar" />
 
-                <Button  style="-fx-background-color:#22C55E;                                -fx-text-fill:white;                                -fx-font-weight:bold;" text="Atualizar" />
-            <Button  style="-fx-background-color:#2563EB;                                -fx-text-fill:white;                                -fx-font-weight:bold;" text="Buscar" />
+                <Button onAction="#onAtualizarProfessorClicked" style="-fx-background-color:#22C55E;                                -fx-text-fill:white;                                -fx-font-weight:bold;" text="Atualizar" />
+            <Button onAction="#onBuscarProfessorClicked" style="-fx-background-color:#2563EB;                                -fx-text-fill:white;                                -fx-font-weight:bold;" text="Buscar" />
 
-                <Button style="-fx-background-color:#64748B;                                -fx-text-fill:white;                                -fx-font-weight:bold;" text="Limpar" />
+                <Button onAction="#onLimparClicked" style="-fx-background-color:#64748B;                                -fx-text-fill:white;                                -fx-font-weight:bold;" text="Limpar" />
 
             </HBox>
 
