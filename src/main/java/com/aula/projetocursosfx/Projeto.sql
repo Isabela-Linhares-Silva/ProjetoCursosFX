@@ -33,3 +33,12 @@ CREATE TABLE matricula (
        data_pagamento DATE,
        status_pagamento VARCHAR(50)
 );
+
+CREATE TABLE usuario(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    senha VARCHAR(255) NOT NULL
+);
+
+INSERT INTO usuario(email, senha)
+VALUES ('admin', '123');
