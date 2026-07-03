@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="562.0" prefWidth="776.0"
+            style="-fx-background-color:#1E3A8A;"
+            xmlns="http://javafx.com/javafx/26"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.aula.projetocursosfx.controller.LoginController">
+
+   <children>
+
+      <Rectangle
+              fx:id="cardLogin"
+              layoutX="242"
+              layoutY="84"
+              width="293"
+              height="399"
+              arcWidth="30"
+              arcHeight="30"
+              fill="WHITE"
+              stroke="TRANSPARENT"/>
+
+      <Label
+              layoutX="268"
+              layoutY="118"
+              text="🎓 AcademiSys"
+              textFill="#1E3A8A">
+
+         <font>
+            <Font name="System Bold" size="25"/>
+         </font>
+
+      </Label>
+
+      <Label
+              layoutX="273"
+              layoutY="166"
+              text="Entrar">
+
+         <font>
+            <Font name="System Bold" size="32"/>
+         </font>
+
+      </Label>
+
+      <Label
+              layoutX="274"
+              layoutY="225"
+              text="Email"
+              textFill="#5E5757">
+
+         <font>
+            <Font name="System Bold" size="13"/>
+         </font>
+
+      </Label>
+
+      <TextField
+              fx:id="emailLogin"
+              layoutX="273"
+              layoutY="250"
+              prefWidth="231"
+              prefHeight="35"
+              promptText="Digite seu email"
+              style="-fx-background-radius:10;
+                       -fx-border-radius:10;" />
+
+      <Label
+              layoutX="274"
+              layoutY="295"
+              text="Senha"
+              textFill="#5E5757">
+
+         <font>
+            <Font name="System Bold" size="13"/>
+         </font>
+
+      </Label>
+
+      <PasswordField
+              fx:id="senhaLogin"
+              layoutX="273"
+              layoutY="320"
+              prefWidth="231"
+              prefHeight="35"
+              promptText="Digite sua senha"
+              style="-fx-background-radius:10;
+                       -fx-border-radius:10;" />
+
+      <Button
+              fx:id="loginButton"
+              layoutX="340"
+              layoutY="378"
+              prefWidth="95"
+              prefHeight="35"
+              text="Entrar"
+              onAction="#onLoginClicked"
+              textFill="WHITE"
+              style="-fx-background-color:#2563EB;
+                       -fx-background-radius:12;
+                       -fx-cursor:hand;">
+
+         <font>
+            <Font name="System Bold" size="14"/>
+         </font>
+
+      </Button>
+
+      <Label
+              layoutX="278"
+              layoutY="433"
+              text="Não possui uma conta?">
+
+         <font>
+            <Font size="13"/>
+         </font>
+
+      </Label>
+
+      <Hyperlink
+              layoutX="415"
+              layoutY="429"
+              text="Cadastre-se"
+              onAction="#onCadastrarTelaClicked"
+              style="-fx-background-color:transparent;
+                       -fx-border-color:transparent;
+                       -fx-text-fill:#2563EB;
+                       -fx-underline:true;
+                       -fx-cursor:hand;
+                       -fx-padding:0;">
+
+         <font>
+            <Font size="13"/>
+         </font>
+
+      </Hyperlink>
+
+   </children>
+
+</AnchorPane>
