@@ -1,113 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="562.0" prefWidth="776.0"
-            style="-fx-background-color: #1E3A8A;"
-            xmlns="http://javafx.com/javafx/21"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.aula.projetocursosfx.controller.LoginController">
+<AnchorPane prefHeight="562.0" prefWidth="776.0" style="-fx-background-color: #1E3A8A;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.aula.projetocursosfx.controller.LoginController">
 
    <children>
 
-      <Rectangle fx:id="cardLogin"
-                 layoutX="242.0"
-                 layoutY="84.0"
-                 width="293.0"
-                 height="399.0"
-                 arcWidth="25.0"
-                 arcHeight="25.0"
-                 fill="WHITE"
-                 stroke="TRANSPARENT">
+      <Rectangle fx:id="cardLogin" arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="399.0" layoutX="147.0" layoutY="140.0" stroke="TRANSPARENT" width="293.0">
 
          <effect>
-            <DropShadow radius="25"
-                        offsetY="6">
+            <DropShadow offsetY="6" radius="25">
                <color>
-                  <Color red="0" green="0" blue="0" opacity="0.25"/>
+                  <Color red="0" green="0" blue="0" opacity="0.25" />
                </color>
             </DropShadow>
          </effect>
 
       </Rectangle>
 
-      <Label layoutX="268.0"
-             layoutY="119.0"
-             text="🎓 AcademiSys"
-             textFill="#1E3A8A">
+      <Label layoutX="197.0" layoutY="185.0" text="🎓 AcademiSys" textFill="#1E3A8A">
          <font>
-            <Font name="System Bold" size="25"/>
+            <Font name="System Bold" size="25" />
          </font>
       </Label>
 
-      <Label layoutX="273.0"
-             layoutY="166.0"
-             text="Entrar">
+      <Label layoutX="178.0" layoutY="221.0" text="Entrar">
          <font>
-            <Font name="System Bold" size="32"/>
+            <Font name="System Bold" size="32" />
          </font>
       </Label>
 
-      <Label layoutX="274.0"
-             layoutY="225.0"
-             text="Email"
-             textFill="#5E5757">
+      <Label layoutX="180.0" layoutY="281.0" text="Email" textFill="#5E5757">
          <font>
-            <Font name="System Bold" size="13"/>
+            <Font name="System Bold" size="13" />
          </font>
       </Label>
 
-      <TextField fx:id="emailLogin"
-                 layoutX="273.0"
-                 layoutY="250.0"
-                 prefWidth="231.0"/>
+      <TextField fx:id="emailLogin" layoutX="178.0" layoutY="300.0" prefWidth="231.0" />
 
-      <Label layoutX="274.0"
-             layoutY="284.0"
-             text="Senha"
-             textFill="#5E5757">
+      <Label layoutX="178.0" layoutY="340.0" text="Senha" textFill="#5E5757">
          <font>
-            <Font name="System Bold" size="13"/>
+            <Font name="System Bold" size="13" />
          </font>
       </Label>
 
-      <PasswordField fx:id="senhaLogin"
-                     layoutX="273.0"
-                     layoutY="309.0"
-                     prefWidth="231.0"/>
+      <PasswordField fx:id="senhaLogin" layoutX="178.0" layoutY="360.0" prefWidth="231.0" />
 
-      <Button fx:id="loginButton"
-              layoutX="359.0"
-              layoutY="363.0"
-              text="Entrar"
-              textFill="WHITE"
-              onAction="#onLoginClicked"
-              style="-fx-background-color:#2563EB; -fx-background-radius:8;">
+      <Button fx:id="loginButton" layoutX="264.0" layoutY="417.0" onAction="#onLoginClicked" style="-fx-background-color:#2563EB; -fx-background-radius:8;" text="Entrar" textFill="WHITE">
          <font>
-            <Font size="15"/>
+            <Font size="15" />
          </font>
       </Button>
 
-      <Label layoutX="279.0"
-             layoutY="409.0"
-             text="Não possui uma conta?">
+      <Label layoutX="180.0" layoutY="467.0" text="Não possui uma conta?">
          <font>
-            <Font size="13"/>
+            <Font size="13" />
          </font>
       </Label>
 
-      <Hyperlink layoutX="416.0"
-                 layoutY="407.0"
-                 text="Cadastre-se"
-                 onAction="#onCadastrarTelaClicked"
-                 style="-fx-text-fill:#2563EB; -fx-underline:true;">
+      <Hyperlink layoutX="315.0" layoutY="464.0" onAction="#onCadastrarTelaClicked" style="-fx-text-fill:#2563EB; -fx-underline:true;" text="Cadastre-se">
          <font>
-            <Font size="13"/>
+            <Font size="13" />
          </font>
       </Hyperlink>
 
