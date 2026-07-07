@@ -1,13 +1,14 @@
 package com.aula.projetocursosfx.controller;
 
+import com.aula.projetocursosfx.db.DB;
+import com.aula.projetocursosfx.model.dao.UsuarioDao;
+import com.aula.projetocursosfx.model.dao.impl.UsuarioDaoJDBC;
+import com.aula.projetocursosfx.model.entities.Usuario;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -41,17 +42,39 @@ public class CadastroController {
         String senha = senhaCadastro.getText().trim();
         String confirma = confirmaSenhaCadastro.getText().trim();
 
-        if(email.isEmpty() || senha.isEmpty() || confirma.isEmpty()){
-            System.out.println("Preencha todos os campos!");
+        if (email.isEmpty() || senha.isEmpty() || confirma.isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText(null);
+            alert.setContentText("Preencha todos os campos!");
+            alert.showAndWait();
             return;
         }
 
-        if(!senha.equals(confirma)){
-            System.out.println("As senhas não estão iguais!");
+        if (!senha.equals(confirma)) {
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("As senhas não estão iguais!");
+            alert.showAndWait();
             return;
         }
 
-        System.out.println("Cadastro realizado!");
+        Usuario usuario = new Usuario();
+        usuario.setEmail(email);
+        usuario.setSenha(senha);
+
+        UsuarioDao dao = new UsuarioDaoJDBC(DB.getConnection());
+        dao.insert(usuario);
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText(null);
+        alert.setContentText("Cadastro realizado com sucesso!");
+        alert.showAndWait();
+
+        emailCadastro.clear();
+        senhaCadastro.clear();
+        confirmaSenhaCadastro.clear();
     }
 
     @FXML
