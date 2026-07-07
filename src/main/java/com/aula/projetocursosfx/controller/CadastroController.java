@@ -2,6 +2,7 @@ package com.aula.projetocursosfx.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -84,5 +85,26 @@ public class CadastroController {
         shadow.setColor(Color.rgb(0,0,0,0.25));
 
         cardCadastro.setEffect(shadow);
+    }
+
+    @FXML
+    private void mouseEntrouBotao() {
+        cadastroButton.setStyle(
+                "-fx-background-color:#1D4ED8;" +
+                        "-fx-background-radius:8;" +
+                        "-fx-cursor: hand;"
+        );
+
+        cadastroButton.setCursor(Cursor.HAND);
+    }
+
+    @FXML
+    private void mouseSaiuBotao() {
+        cadastroButton.setStyle(
+                "-fx-background-color:#2563EB;" +
+                        "-fx-background-radius:8;"
+        );
+
+        cadastroButton.setCursor(Cursor.DEFAULT);
     }
 }

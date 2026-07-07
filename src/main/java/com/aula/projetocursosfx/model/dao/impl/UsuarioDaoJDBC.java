@@ -64,7 +64,7 @@ public class UsuarioDaoJDBC implements UsuarioDao {
         try {
 
             st = connection.prepareStatement(
-                    "INSERT INTO usuario (login, senha) VALUES (?, ?)"
+                    "INSERT INTO usuario (email, senha) VALUES (?, ?)"
             );
 
             st.setString(1, obj.getEmail());
@@ -78,4 +78,6 @@ public class UsuarioDaoJDBC implements UsuarioDao {
             DB.closeStatement(st);
         }
     }
+
+
 }

@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="562.0" prefWidth="776.0" style="-fx-background-color: #1E3A8A;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.aula.projetocursosfx.controller.LoginController">
+<AnchorPane fx:id="root" prefHeight="562.0" prefWidth="776.0" style="-fx-background-color: #1E3A8A;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.aula.projetocursosfx.controller.LoginController">
 
    <children>
 
@@ -57,7 +57,15 @@
 
       <PasswordField fx:id="senhaLogin" layoutX="178.0" layoutY="360.0" prefWidth="231.0" />
 
-      <Button fx:id="loginButton" layoutX="264.0" layoutY="417.0" onAction="#onLoginClicked" style="-fx-background-color:#2563EB; -fx-background-radius:8;" text="Entrar" textFill="WHITE">
+      <Button fx:id="loginButton"
+              layoutX="264.0"
+              layoutY="417.0"
+              text="Entrar"
+              textFill="WHITE"
+              onAction="#onLoginClicked"
+              onMouseEntered="#mouseEntrouBotao"
+              onMouseExited="#mouseSaiuBotao"
+              style="-fx-background-color:#2563EB; -fx-background-radius:8;">
          <font>
             <Font size="15" />
          </font>
@@ -74,14 +82,14 @@
             <Font size="13" />
          </font>
       </Hyperlink>
-      <ImageView fitHeight="765.0" fitWidth="578.0" layoutX="770.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imagemFundo" fitHeight="765.0" fitWidth="700.0" layoutX="770.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="false">
          <image>
             <Image url="@../../../../images/padrao_fundo_de_login.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="340.0" fitWidth="352.0" layoutX="594.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="513.0" fitWidth="640.0" layoutX="428.0" layoutY="179.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../images/imagem_teste_personagens.png" />
+            <Image url="@../../../../images/imagem_personagens_tela_login.png" />
          </image>
       </ImageView>
 
